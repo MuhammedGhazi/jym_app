@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jym_app/core/utils/theme/theme.dart';
 import 'package:jym_app/features/presentations/home_page/views/home_page.dart';
 
 void main() {
@@ -11,11 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const HomePage(),
+      theme: Themes.light,
+      darkTheme: Themes.dark,
+      themeMode: ThemeMode.dark,
+      home: HomePage(),
     );
   }
 }

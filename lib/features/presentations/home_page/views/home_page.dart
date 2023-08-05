@@ -11,10 +11,29 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Title'),
-      ),
+      appBar: _appBar(),
       body: Container(),
     );
   }
+}
+
+_appBar() {
+  return AppBar(
+    leading: GestureDetector(
+      onTap: () {},
+      child: const Icon(
+        Icons.nightlight_round,
+        size: 20,
+      ),
+    ),
+    actions: const [
+      Icon(
+        Icons.person,
+        size: 20,
+      ),
+      SizedBox(
+        width: 20,
+      )
+    ],
+  );
 }
