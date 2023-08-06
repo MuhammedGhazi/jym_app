@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jym_app/core/utils/services/theme_service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,25 +16,29 @@ class _HomePageState extends State<HomePage> {
       body: Container(),
     );
   }
-}
 
-_appBar() {
-  return AppBar(
-    leading: GestureDetector(
-      onTap: () {},
-      child: const Icon(
-        Icons.nightlight_round,
-        size: 20,
+  _appBar() {
+    return AppBar(
+      leading: GestureDetector(
+        onTap: () {
+          setState(() {
+            ThemeService().switchTheme();
+          });
+        },
+        child: const Icon(
+          Icons.nightlight_round,
+          size: 20,
+        ),
       ),
-    ),
-    actions: const [
-      Icon(
-        Icons.person,
-        size: 20,
-      ),
-      SizedBox(
-        width: 20,
-      )
-    ],
-  );
+      actions: const [
+        Icon(
+          Icons.person,
+          size: 20,
+        ),
+        SizedBox(
+          width: 20,
+        )
+      ],
+    );
+  }
 }
