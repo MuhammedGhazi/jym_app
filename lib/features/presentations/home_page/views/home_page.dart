@@ -1,18 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:jym_app/core/utils/services/theme_service.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+import 'package:jym_app/features/presentations/home_page/manag/cubits/cubit/theme_cubit.dart';
 
-  @override
-  _HomePageState createState() => _HomePageState();
-}
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _appBar(),
+      appBar: AppBar(
+        leading: GestureDetector(
+          onTap: () {
+            final cubit = context.read<ThemeCubit>();
+            cubit.taggleTheme();
+          },
+          child: const Icon(
+            Icons.nightlight_round,
+            size: 20,
+          ),
+        ),
+        actions: const [
+          Icon(
+            Icons.person,
+            size: 20,
+          ),
+          SizedBox(
+            width: 20,
+          )
+        ],
+      ),
       body: Container(),
     );
   }
@@ -21,9 +38,8 @@ class _HomePageState extends State<HomePage> {
     return AppBar(
       leading: GestureDetector(
         onTap: () {
-          setState(() {
-            ThemeService().switchTheme();
-          });
+          //   final cubit =context.read<ThemeCubit>();
+          ThemeCubit().taggleTheme();
         },
         child: const Icon(
           Icons.nightlight_round,
