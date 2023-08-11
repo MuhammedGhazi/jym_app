@@ -22,4 +22,8 @@ class ThemeCubit extends Cubit<ThemeMode> {
       emit(ThemeMode.light);
     }
   }
+
+  bool get isDartMode {
+    return state == ThemeMode.dark;
+  }
 }
