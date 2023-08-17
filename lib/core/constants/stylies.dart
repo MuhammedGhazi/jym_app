@@ -17,4 +17,18 @@ class Stylies {
       fontWeight: FontWeight.bold,
     );
   }
+
+  static TextStyle titleStyle() {
+    return GoogleFonts.lato(
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+    );
+  }
+
+  static TextStyle subTitleStyle() {
+    return GoogleFonts.lato(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+    );
+  }
 }
