@@ -28,7 +28,7 @@ class InputField extends StatelessWidget {
             style: Stylies.titleStyle(),
           ),
           Container(
-            padding: EdgeInsets.only(left: 14),
+            padding: const EdgeInsets.only(left: 14),
             margin: const EdgeInsets.only(top: 8),
             height: 52,
             decoration: BoxDecoration(
@@ -38,6 +38,7 @@ class InputField extends StatelessWidget {
               children: [
                 Expanded(
                   child: TextFormField(
+                    readOnly: widget != null,
                     autofocus: false,
                     controller: controller,
                     style: Stylies.subTitleStyle(),
@@ -56,6 +57,11 @@ class InputField extends StatelessWidget {
                         ))),
                   ),
                 ),
+                widget == null
+                    ? Container()
+                    : Container(
+                        child: widget,
+                      ),
               ],
             ),
           )

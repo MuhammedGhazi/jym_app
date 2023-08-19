@@ -15,6 +15,8 @@ class AddTaskView extends StatefulWidget {
 
 class _AddTaskViewState extends State<AddTaskView> {
   DateTime _selectedDate = DateTime.now();
+  DateTime _upToDate = DateTime.now().add(Duration(days: 30));
+
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<ThemeCubit>();
@@ -30,14 +32,72 @@ class _AddTaskViewState extends State<AddTaskView> {
               Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: Text(
-                  "Add text",
+                  "Al_DANA GYM",
                   style: Stylies.headingStyle(),
                 ),
               ),
-              const InputField(hint: 'enter your title', title: 'my title'),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Expanded(
+                    child: InputField(
+                        hint: 'Enter your full name', title: 'Full Name'),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  CircleAvatar(
+                    backgroundImage:
+                        AssetImage("assets/images/jym_profile.jpeg"),
+                    radius: 50,
+                  ),
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Expanded(
+                    child: InputField(hint: '175 cm', title: 'Tall'),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: InputField(hint: '75', title: 'weight'),
+                  ),
+                ],
+              ),
+              const InputField(hint: 'GYM', title: 'class'),
               const InputField(title: "note", hint: "enter your hints here"),
-              InputField(
-                  title: "date", hint: DateFormat.yMd().format(_selectedDate)),
+              Row(
+                children: [
+                  Expanded(
+                    child: InputField(
+                      title: "date record",
+                      hint: DateFormat.yMd().format(_selectedDate),
+                      widget: IconButton(
+                          onPressed: () async {
+                            await _getDateFromUser(_selectedDate);
+                          },
+                          icon: const Icon(Icons.calendar_today_outlined)),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: InputField(
+                      title: "record up to",
+                      hint: DateFormat.yMd().format(_upToDate),
+                      widget: IconButton(
+                          onPressed: () async {
+                            await _getDateFromUser(_upToDate);
+                          },
+                          icon: const Icon(Icons.calendar_today_outlined)),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
@@ -66,5 +126,19 @@ class _AddTaskViewState extends State<AddTaskView> {
         )
       ],
     );
+  }
+
+  Future _getDateFromUser(DateTime putDate) async {
+    DateTime? pickerDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2015),
+      lastDate: DateTime(2050),
+    );
+    if (pickerDate != null) {
+      setState(() {
+        putDate = pickerDate;
+      });
+    }
   }
 }

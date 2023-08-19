@@ -30,18 +30,18 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<ThemeCubit>();
-    DateTime _selectedDate = DateTime.now();
+    DateTime selectedDate = DateTime.now();
     return Scaffold(
       appBar: _myAppBar(cubit),
       body: Column(
-        children: [_addTaskBar(), _addDateBar(_selectedDate)],
+        children: [_addTaskBar(), _addDateBar(selectedDate)],
       ),
     );
   }
 
-  Container _addDateBar(DateTime _selectedDate) {
+  Container _addDateBar(DateTime selectedDate) {
     return Container(
-      margin: EdgeInsets.only(left: 20, top: 10),
+      margin: const EdgeInsets.only(left: 20, top: 10),
       child: DatePicker(
         DateTime.now(),
         height: 100,
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
         monthTextStyle:
             GoogleFonts.lato(textStyle: const TextStyle(fontSize: 15)),
         onDateChange: (selectedDate) {
-          _selectedDate = selectedDate;
+          selectedDate = selectedDate;
           print(selectedDate.toString());
         },
       ),
