@@ -18,6 +18,9 @@ class AddTaskView extends StatefulWidget {
 }
 
 class _AddTaskViewState extends State<AddTaskView> {
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _classController = TextEditingController();
+
   DateTime _selectedDate = DateTime.now();
   DateTime _upToDate = DateTime.now().add(const Duration(days: 30));
   String _selectedClass = "GYM";
@@ -51,15 +54,18 @@ class _AddTaskViewState extends State<AddTaskView> {
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Expanded(
                     child: InputField(
-                        hint: 'Enter your full name', title: 'Full Name'),
+                      hint: 'Enter your full name',
+                      title: 'Full Name',
+                      controller: _titleController,
+                    ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
-                  CircleAvatar(
+                  const CircleAvatar(
                     backgroundImage:
                         AssetImage("assets/images/jym_profile.jpeg"),
                     radius: 50,
@@ -94,6 +100,7 @@ class _AddTaskViewState extends State<AddTaskView> {
               InputField(
                 hint: _selectedClass,
                 title: 'class',
+                controller: _classController,
                 widget: DropdownButton(
                   icon: const Icon(Icons.keyboard_arrow_down),
                   items:
@@ -150,14 +157,18 @@ class _AddTaskViewState extends State<AddTaskView> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   _colorPallete(),
-                  MyButton(lable: "Add subscriber", onTap: () {})
+                  MyButton(
+                      lable: "Add subscriber",
+                      onTap: () {
+                        _validateDate();
+                      })
                 ],
               )
             ],
@@ -165,6 +176,17 @@ class _AddTaskViewState extends State<AddTaskView> {
         ),
       ),
     );
+  }
+
+  _validateDate() {
+    if (_titleController.text.isNotEmpty) {
+      //add to database
+
+      Navigator.pop(context);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("all feiled id required..")));
+    }
   }
 
   Column _colorPallete() {
@@ -175,7 +197,7 @@ class _AddTaskViewState extends State<AddTaskView> {
           "Colors",
           style: Stylies.titleStyle(),
         ),
-        SizedBox(
+        const SizedBox(
           height: 8,
         ),
         Wrap(
@@ -197,7 +219,7 @@ class _AddTaskViewState extends State<AddTaskView> {
                                 ? pinkClr
                                 : yellowClr,
                         child: _selectedColor == index
-                            ? Icon(
+                            ? const Icon(
                                 Icons.done,
                                 color: Colors.white,
                               )

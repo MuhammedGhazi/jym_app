@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           MyButton(
-              lable: "add Subscriber",
+              lable: " New subscriber",
               onTap: (() => Navigator.of(context).pushNamed('addTask')))
         ],
       ),
