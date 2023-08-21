@@ -54,7 +54,6 @@ class _HomePageState extends State<HomePage> {
             GoogleFonts.lato(textStyle: const TextStyle(fontSize: 15)),
         onDateChange: (selectedDate) {
           selectedDate = selectedDate;
-          print(selectedDate.toString());
         },
       ),
     );
@@ -80,7 +79,7 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           MyButton(
-              lable: "+ add Task",
+              lable: "add Subscriber",
               onTap: (() => Navigator.of(context).pushNamed('addTask')))
         ],
       ),
