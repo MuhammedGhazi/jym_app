@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jym_app/core/constants/constants.dart';
-import 'package:jym_app/core/constants/stylies.dart';
 
 class MyButton extends StatelessWidget {
   const MyButton({super.key, required this.lable, required this.onTap});
@@ -20,7 +19,7 @@ class MyButton extends StatelessWidget {
         child: Center(
             child: Text(
           lable,
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
         )),
       ),
     );

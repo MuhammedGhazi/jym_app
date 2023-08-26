@@ -8,6 +8,7 @@ import 'package:jym_app/core/constants/stylies.dart';
 import 'package:jym_app/features/data/models/subscriber_model.dart';
 import 'package:jym_app/features/presentations/home_page/manag/cubits/add_subs_cubit/add_subs_cubit.dart';
 import 'package:jym_app/features/presentations/home_page/views/widgets/my_button.dart';
+import 'package:numberpicker/numberpicker.dart';
 
 import '../manag/cubits/cubit/theme_cubit.dart';
 import 'widgets/input_field.dart';
@@ -22,6 +23,10 @@ class AddTaskView extends StatefulWidget {
 class _AddTaskViewState extends State<AddTaskView> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _classController = TextEditingController();
+  int _tall = 175;
+  int _weight = 75;
+  String _note =
+      "Monthly payment at: ${DateFormat.yMd().format(DateTime.now())}\n";
 
   DateTime _selectedDate = DateTime.now();
   DateTime _upToDate = DateTime.now().add(const Duration(days: 30));
@@ -40,9 +45,7 @@ class _AddTaskViewState extends State<AddTaskView> {
     final cubit = context.read<ThemeCubit>();
     final cubitAddSubs = context.read<AddSubsCubit>();
     return BlocListener<AddSubsCubit, AddSubsState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+      listener: (context, state) {},
       child: Scaffold(
         //  backgroundColor: ,
         appBar: _myAppBar(context, cubit),
@@ -81,11 +84,26 @@ class _AddTaskViewState extends State<AddTaskView> {
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
-                  children: const [
+                  children: [
                     Expanded(
-                      child: InputField(hint: '175', title: 'Tall'),
+                      child: InputField(
+                        hint: "$_tall",
+                        title: 'Tall',
+                        widget: NumberPicker(
+                          selectedTextStyle: const TextStyle(fontSize: 18),
+                          itemCount: 1,
+                          minValue: 30,
+                          maxValue: 220,
+                          value: _tall,
+                          onChanged: (value) {
+                            setState(() {
+                              _tall = value;
+                            });
+                          },
+                        ),
+                      ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 50,
                       child: Text(
                         "  cm",
@@ -93,9 +111,24 @@ class _AddTaskViewState extends State<AddTaskView> {
                       ),
                     ),
                     Expanded(
-                      child: InputField(hint: '75', title: 'weight'),
+                      child: InputField(
+                        hint: '$_weight',
+                        title: 'weight',
+                        widget: NumberPicker(
+                          selectedTextStyle: const TextStyle(fontSize: 18),
+                          itemCount: 1,
+                          minValue: 20,
+                          maxValue: 150,
+                          value: _weight,
+                          onChanged: (value) {
+                            setState(() {
+                              _weight = value;
+                            });
+                          },
+                        ),
+                      ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 50,
                       child: Text(
                         "   KG",
@@ -124,7 +157,7 @@ class _AddTaskViewState extends State<AddTaskView> {
                     },
                   ),
                 ),
-                const InputField(title: "note", hint: "enter your hints here"),
+                InputField(title: "note", hint: "$_note"),
                 Row(
                   children: [
                     Expanded(
@@ -191,13 +224,12 @@ class _AddTaskViewState extends State<AddTaskView> {
     if (_titleController.text.isNotEmpty) {
       cubitAddSubs.addSub(SubscriberModel(
           fullName: _titleController.text,
-          category: "judo",
-          dateRecord: DateFormat.yMd().format(DateTime.now()).toString(),
-          note: "first sub",
-          tall: 180,
-          weight: 80,
-          upToRecord:
-              DateFormat.yMd().format(DateTime.now().add(Duration(days: 30)))));
+          category: _selectedClass,
+          dateRecord: DateFormat.yMd().format(_selectedDate).toString(),
+          note: _note,
+          tall: _tall,
+          weight: _weight,
+          upToRecord: DateFormat.yMd().format(_upToDate)));
 
       Navigator.pop(context);
     } else {
