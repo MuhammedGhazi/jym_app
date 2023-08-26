@@ -3,9 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'package:jym_app/core/utils/theme/theme.dart';
+import 'package:jym_app/features/presentations/home_page/manag/cubits/add_subs_cubit/add_subs_cubit.dart';
 import 'package:jym_app/features/presentations/home_page/manag/cubits/cubit/theme_cubit.dart';
 import 'package:jym_app/features/presentations/home_page/views/home_page.dart';
-import 'package:jym_app/features/presentations/home_page/views/widgets/add_task_view.dart';
+import 'package:jym_app/features/presentations/home_page/views/add_task_view.dart';
+
+//import 'features/presentations/home_page/manag/cubits/theme_cubit/theme_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,8 +21,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ThemeCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ThemeCubit>(
+          create: (BuildContext context) => ThemeCubit(),
+        ),
+        BlocProvider<AddSubsCubit>(
+          create: (BuildContext context) => AddSubsCubit(),
+        ),
+      ],
       child: BlocBuilder<ThemeCubit, ThemeMode>(
         builder: (context, state) {
           return MaterialApp(

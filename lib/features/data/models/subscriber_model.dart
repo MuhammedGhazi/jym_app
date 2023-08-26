@@ -5,8 +5,8 @@ class SubscriberModel {
   int? weight;
   String? category;
   String? note;
-  DateTime? dateRecord;
-  DateTime? upToRecord;
+  String? dateRecord;
+  String? upToRecord;
   SubscriberModel(
       {this.id,
       this.fullName,
@@ -18,6 +18,7 @@ class SubscriberModel {
       this.upToRecord});
   SubscriberModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    fullName = json['fullName'];
     tall = json['tall'];
     weight = json['weight'];
     category = json['category'];
@@ -28,7 +29,8 @@ class SubscriberModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = id;
+    //data['id'] = id;
+    data['fullName'] = fullName;
     data['tall'] = tall;
     data['weight'] = weight;
     data['category'] = category;
