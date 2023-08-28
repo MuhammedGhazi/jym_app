@@ -7,8 +7,12 @@ import 'package:intl/intl.dart';
 import 'package:jym_app/core/constants/constants.dart';
 import 'package:jym_app/core/constants/stylies.dart';
 import 'package:jym_app/core/utils/services/notification_services.dart';
+import 'package:jym_app/features/data/models/subscriber_model.dart';
+import 'package:jym_app/features/presentations/home_page/manag/cubits/add_subs_cubit/add_subs_cubit.dart';
 import 'package:jym_app/features/presentations/home_page/manag/cubits/cubit/theme_cubit.dart';
+import 'package:jym_app/features/presentations/home_page/manag/cubits/subs_cubit/subs_cubit.dart';
 import 'package:jym_app/features/presentations/home_page/views/widgets/my_button.dart';
+import 'package:jym_app/features/presentations/home_page/views/widgets/subs_list_view.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -21,20 +25,29 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  DateTime _selectedTime = DateTime.now();
+
   @override
   void initState() {
     super.initState();
+    BlocProvider.of<SubsCubit>(context).fetchAllSubs();
     NotifyHelper.initialize(flutterLocalNotificationsPlugin);
   }
 
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<ThemeCubit>();
+    final cubitAddSub = context.read<AddSubsCubit>();
     DateTime selectedDate = DateTime.now();
+    var subs = cubitAddSub.getAllSubs();
     return Scaffold(
       appBar: _myAppBar(cubit),
       body: Column(
-        children: [_addTaskBar(), _addDateBar(selectedDate)],
+        children: [
+          _addTaskBar(),
+          _addDateBar(selectedDate),
+          SubsListView(),
+        ],
       ),
     );
   }
@@ -115,6 +128,18 @@ class _HomePageState extends State<HomePage> {
       ],
     );
   }
+}
+
+_showSubs() {
+  return Expanded(child: ListView.builder(
+    itemBuilder: (context, index) {
+      return Container(
+        width: 100,
+        height: 50,
+        color: Colors.green,
+      );
+    },
+  ));
 }
 
 class IconMode extends StatelessWidget {

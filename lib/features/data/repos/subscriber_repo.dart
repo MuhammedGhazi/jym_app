@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:jym_app/core/utils/services/sql_services.dart';
 import 'package:jym_app/features/data/models/subscriber_model.dart';
 
@@ -39,6 +40,8 @@ class SubsRepo {
     ]);
     for (var e in map) {
       subscribers.add(SubscriberModel.fromJson(e));
+      debugPrint("${subscribers.length}");
+      debugPrint("$e");
     }
     return subscribers;
   }

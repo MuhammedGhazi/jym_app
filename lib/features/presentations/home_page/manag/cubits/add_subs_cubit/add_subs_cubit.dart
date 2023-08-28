@@ -8,6 +8,7 @@ part 'add_subs_state.dart';
 class AddSubsCubit extends Cubit<AddSubsState> {
   AddSubsCubit() : super(AddSubsInitial());
   SubsRepo subsRepo = SubsRepo();
+  SubscriberModel? allsubs;
   addSub(SubscriberModel subscriberModel) async {
     int a = await subsRepo.add(subscriberModel);
     print(a);
@@ -15,5 +16,10 @@ class AddSubsCubit extends Cubit<AddSubsState> {
 
   delDB() {
     subsRepo.deleteDB();
+  }
+
+  Future<List<SubscriberModel>> getAllSubs() async {
+    List<SubscriberModel> allSubs = await subsRepo.getSubs();
+    return allSubs;
   }
 }
