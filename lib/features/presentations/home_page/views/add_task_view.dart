@@ -7,6 +7,7 @@ import 'package:jym_app/core/constants/constants.dart';
 import 'package:jym_app/core/constants/stylies.dart';
 import 'package:jym_app/features/data/models/subscriber_model.dart';
 import 'package:jym_app/features/presentations/home_page/manag/cubits/add_subs_cubit/add_subs_cubit.dart';
+import 'package:jym_app/features/presentations/home_page/manag/cubits/subs_cubit/subs_cubit.dart';
 import 'package:jym_app/features/presentations/home_page/views/widgets/my_button.dart';
 import 'package:numberpicker/numberpicker.dart';
 
@@ -232,6 +233,7 @@ class _AddTaskViewState extends State<AddTaskView> {
           upToRecord: DateFormat.yMd().format(_upToDate)));
 
       Navigator.pop(context);
+      BlocProvider.of<SubsCubit>(context).fetchAllSubs();
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("all feiled id required..")));

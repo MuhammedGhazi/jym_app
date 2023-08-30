@@ -22,6 +22,7 @@ class SubsListView extends StatelessWidget {
               height: 50,
               width: 100,
               color: Colors.lightBlue,
+              child: Text(subs[index].fullName.toString()),
             );
           },
         ));

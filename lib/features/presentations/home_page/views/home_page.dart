@@ -46,6 +46,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           _addTaskBar(),
           _addDateBar(selectedDate),
+          SizedBox(height: 10),
           SubsListView(),
         ],
       ),
