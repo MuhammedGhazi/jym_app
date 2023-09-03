@@ -24,7 +24,7 @@ class _SubRenewalState extends State<SubRenewal> {
       child: Column(
         children: [
           Text(widget.subM.fullName.toString()),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Text(widget.subM.category.toString()),
@@ -47,7 +47,14 @@ class _SubRenewalState extends State<SubRenewal> {
           const SizedBox(height: 5),
           MyButton(
             lable: "renewal",
-            onTap: () {},
+            onTap: () {
+              BlocProvider.of<SubsCubit>(context).renewalSubs(
+                  widget.subM.id!,
+                  recodTo ??
+                      _addMonthToDate(widget.subM.upToRecord.toString(), 1));
+              Navigator.pop(context);
+              BlocProvider.of<SubsCubit>(context).fetchArchiveSubs();
+            },
           ),
           const SizedBox(height: 5),
           MyButton(
@@ -64,7 +71,13 @@ class _SubRenewalState extends State<SubRenewal> {
           const SizedBox(height: 5),
           MyButton(
             lable: "delete",
-            onTap: () {},
+            onTap: () {
+              setState(() {
+                BlocProvider.of<SubsCubit>(context).deleteSub(widget.subM.id!);
+                Navigator.pop(context);
+                BlocProvider.of<SubsCubit>(context).fetchArchiveSubs();
+              });
+            },
           ),
         ],
       ),

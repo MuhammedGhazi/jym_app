@@ -24,6 +24,11 @@ class SubsCubit extends Cubit<SubsState> {
     emit(SubsSuccess());
   }
 
+  renewalSubs(int id, String newDate) async {
+    await subsRepo.renewalSub(id, newDate);
+    emit(SubsSuccess());
+  }
+
   deleteSub(int id) {
     subsRepo.delete(id);
   }
