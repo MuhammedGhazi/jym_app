@@ -14,6 +14,8 @@ import 'package:jym_app/features/presentations/home_page/manag/cubits/subs_cubit
 import 'package:jym_app/features/presentations/home_page/views/widgets/my_button.dart';
 import 'package:jym_app/features/presentations/home_page/views/widgets/subs_list_view.dart';
 
+import 'widgets/icon_mode.dart';
+
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
@@ -25,12 +27,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  DateTime _selectedTime = DateTime.now();
-
+  //DateTime _selectedTime = DateTime.now();
+  DateTime _selectedDate = DateTime.now();
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<SubsCubit>(context).fetchAllSubs();
+    BlocProvider.of<SubsCubit>(context).fetchArchiveSubs();
     NotifyHelper.initialize(flutterLocalNotificationsPlugin);
   }
 
@@ -38,16 +40,17 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final cubit = context.read<ThemeCubit>();
     final cubitAddSub = context.read<AddSubsCubit>();
+    final CubitSubs = context.read<SubsCubit>();
     DateTime selectedDate = DateTime.now();
-    var subs = cubitAddSub.getAllSubs();
+    var subs = CubitSubs.fetchArchiveSubs();
     return Scaffold(
       appBar: _myAppBar(cubit),
       body: Column(
         children: [
           _addTaskBar(),
           _addDateBar(selectedDate),
-          SizedBox(height: 10),
-          SubsListView(),
+          const SizedBox(height: 10),
+          SubsListView(checkDate: _selectedDate),
         ],
       ),
     );
@@ -66,8 +69,10 @@ class _HomePageState extends State<HomePage> {
             GoogleFonts.lato(textStyle: const TextStyle(fontSize: 15)),
         monthTextStyle:
             GoogleFonts.lato(textStyle: const TextStyle(fontSize: 15)),
-        onDateChange: (selectedDate) {
-          selectedDate = selectedDate;
+        onDateChange: (datem) {
+          setState(() {
+            _selectedDate = datem;
+          });
         },
       ),
     );
@@ -118,8 +123,13 @@ class _HomePageState extends State<HomePage> {
         },
         child: IconMode(cubit: cubit),
       ),
-      actions: const [
-        CircleAvatar(
+      actions: [
+        IconButton(
+            onPressed: () {
+              //BlocProvider.of<SubsCubit>(context).delDB();
+            },
+            icon: const Icon(Icons.settings)),
+        const CircleAvatar(
           backgroundImage: AssetImage("assets/images/jym_pro2.jpeg"),
           radius: 25,
         ),
@@ -128,40 +138,5 @@ class _HomePageState extends State<HomePage> {
         )
       ],
     );
-  }
-}
-
-_showSubs() {
-  return Expanded(child: ListView.builder(
-    itemBuilder: (context, index) {
-      return Container(
-        width: 100,
-        height: 50,
-        color: Colors.green,
-      );
-    },
-  ));
-}
-
-class IconMode extends StatelessWidget {
-  const IconMode({
-    super.key,
-    required this.cubit,
-  });
-
-  final ThemeCubit cubit;
-
-  @override
-  Widget build(BuildContext context) {
-    return cubit.isDartMode
-        ? const Icon(
-            Icons.sunny,
-            size: 20,
-          )
-        : const Icon(
-            Icons.nightlight_round_sharp,
-            size: 20,
-            color: Colors.black54,
-          );
   }
 }

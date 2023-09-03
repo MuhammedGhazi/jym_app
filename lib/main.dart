@@ -49,8 +49,6 @@ class MyApp extends StatelessWidget {
             routes: <String, WidgetBuilder>{
               'addTask': (BuildContext context) =>
                   const AddTaskView(title: Text('page A')),
-              // '/b': (BuildContext context) => const MyPage(title: Text('page B')),
-              // '/c': (BuildContext context) => const MyPage(title: Text('page C')),
             },
           );
         },

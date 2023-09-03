@@ -19,12 +19,14 @@ class SqlServices {
         await db.execute('''
           CREATE TABLE subs(id INTEGER PRIMARY KEY AUTOINCREMENT,
           fullName TEXT,
+          age INTEGER,
           tall INTEGER,
           weight INTEGER,
           category TEXT,
           note TEXT,
           dateRecord TEXT,
-          upToRecord TExT)
+          upToRecord TExT,
+          archive INTEGER)
           ''');
         print(
             "create date base and table successful====================================");

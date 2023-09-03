@@ -10,13 +10,13 @@ class AddSubsCubit extends Cubit<AddSubsState> {
   SubsRepo subsRepo = SubsRepo();
   SubscriberModel? allsubs;
   addSub(SubscriberModel subscriberModel) async {
-    int a = await subsRepo.add(subscriberModel);
-    print(a);
+    await subsRepo.add(subscriberModel);
+    // print(a);
   }
 
-  delDB() {
-    subsRepo.deleteDB();
-  }
+  // delDB() {
+  //   subsRepo.deleteDB();
+  // }
 
   Future<List<SubscriberModel>> getAllSubs() async {
     List<SubscriberModel> allSubs = await subsRepo.getSubs();
