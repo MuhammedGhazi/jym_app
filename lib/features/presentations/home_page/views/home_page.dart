@@ -7,8 +7,6 @@ import 'package:intl/intl.dart';
 import 'package:jym_app/core/constants/constants.dart';
 import 'package:jym_app/core/constants/stylies.dart';
 import 'package:jym_app/core/utils/services/notification_services.dart';
-import 'package:jym_app/features/data/models/subscriber_model.dart';
-import 'package:jym_app/features/presentations/home_page/manag/cubits/add_subs_cubit/add_subs_cubit.dart';
 import 'package:jym_app/features/presentations/home_page/manag/cubits/cubit/theme_cubit.dart';
 import 'package:jym_app/features/presentations/home_page/manag/cubits/subs_cubit/subs_cubit.dart';
 import 'package:jym_app/features/presentations/home_page/views/widgets/my_button.dart';
@@ -39,10 +37,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<ThemeCubit>();
-    final cubitAddSub = context.read<AddSubsCubit>();
-    final CubitSubs = context.read<SubsCubit>();
+    //final cubitAddSub = context.read<AddSubsCubit>();
+    final cubitSubs = context.read<SubsCubit>();
     DateTime selectedDate = DateTime.now();
-    var subs = CubitSubs.fetchArchiveSubs();
+    var subs = cubitSubs.fetchArchiveSubs();
     return Scaffold(
       appBar: _myAppBar(cubit),
       body: Column(

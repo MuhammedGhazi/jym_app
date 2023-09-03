@@ -56,12 +56,12 @@ class SubsRepo {
   Future<List<SubscriberModel>> getRenewSubs() async {
     var db = await sqlServices.db;
     List<SubscriberModel> subscribers = [];
-    List<Map<String, dynamic>> map2 = await db.rawQuery('''
-      SELECT * FROM subs WHERE 
-      archive=0 AND
-      upToRecord
+    // List<Map<String, dynamic>> map2 = await db.rawQuery('''
+    //   SELECT * FROM subs WHERE
+    //   archive=0 AND
+    //   upToRecord
 
-      ''');
+    //   ''');
     List<Map<String, dynamic>> map = await db.query("subs", columns: [
       "id",
       "fullName",

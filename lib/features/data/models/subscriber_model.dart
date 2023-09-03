@@ -34,7 +34,8 @@ class SubscriberModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    // ignore: prefer_collection_literals
+    final Map<String, dynamic> data = Map<String, dynamic>();
     //data['id'] = id;
     data['fullName'] = fullName;
     data['tall'] = tall;

@@ -11,7 +11,7 @@ class SqlServices {
   intiaDB() async {
     var databasePath = await getDatabasesPath();
     String path = p.join(databasePath, "gym.db");
-    print(path);
+
     Database db = await openDatabase(
       path,
       version: 1,
@@ -28,6 +28,7 @@ class SqlServices {
           upToRecord TExT,
           archive INTEGER)
           ''');
+        // ignore: avoid_print
         print(
             "create date base and table successful====================================");
       },

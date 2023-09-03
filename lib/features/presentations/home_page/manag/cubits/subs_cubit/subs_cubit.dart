@@ -19,6 +19,11 @@ class SubsCubit extends Cubit<SubsState> {
     emit(SubsSuccess());
   }
 
+  archiveSubs(int id) async {
+    await subsRepo.archiveSub(id);
+    emit(SubsSuccess());
+  }
+
   deleteSub(int id) {
     subsRepo.delete(id);
   }
