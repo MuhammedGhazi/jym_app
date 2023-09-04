@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:jym_app/features/data/models/subscriber_model.dart';
+import 'package:jym_app/features/presentations/home_page/views/widgets/progress_indicator.dart';
 
 class SubTile extends StatelessWidget {
   const SubTile({Key? key, required this.subs, required this.checkDate})
@@ -63,6 +64,21 @@ class SubTile extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white)),
                       ),
+                      MyProgressIndicator(
+                          steps: checkDate
+                                      .difference(DateFormat("dd/MM/y")
+                                          .parse(subs.upToRecord!))
+                                      .inDays >
+                                  30
+                              ? 30
+                              : checkDate
+                                  .difference(DateFormat("dd/MM/y")
+                                      .parse(subs.upToRecord!))
+                                  .inDays
+                          // checkDate.compareTo(
+                          //     DateFormat("dd/MM/y").parse(subs.upToRecord!))
+
+                          )
                     ],
                   )),
                   Container(
