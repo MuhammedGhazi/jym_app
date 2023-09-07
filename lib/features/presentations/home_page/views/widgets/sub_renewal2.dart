@@ -48,12 +48,15 @@ class _SubRenewal2State extends State<SubRenewal2> {
           MyButton(
             lable: "renewal",
             onTap: () {
-              BlocProvider.of<SubsCubit>(context).renewalSubs(
-                  widget.subM.id!,
-                  recodTo ??
-                      _addMonthToDate(widget.subM.upToRecord.toString(), 1));
-              Navigator.pop(context);
-              BlocProvider.of<SubsCubit>(context).fetchArchiveSubs();
+              setState(() {
+                BlocProvider.of<SubsCubit>(context).renewalSubs(
+                    widget.subM.id!,
+                    recodTo ??
+                        _addMonthToDate(widget.subM.upToRecord.toString(), 1));
+                Navigator.pop(context);
+                BlocProvider.of<SubsCubit>(context).fetchArchiveSubs();
+                BlocProvider.of<SubsCubit>(context).fetchActiveSubs();
+              });
             },
           ),
           const SizedBox(height: 5),

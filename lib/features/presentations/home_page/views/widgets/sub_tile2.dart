@@ -17,7 +17,7 @@ class SubTile2 extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          color: OverColor(),
+          color: overColor(),
         ),
         child: Row(
           children: [
@@ -86,6 +86,6 @@ class SubTile2 extends StatelessWidget {
   }
 }
 
-Color OverColor() {
+Color overColor() {
   return Colors.greenAccent;
 }

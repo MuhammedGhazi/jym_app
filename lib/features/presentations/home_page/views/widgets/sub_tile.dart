@@ -22,7 +22,7 @@ class SubTile extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                color: OverColor(),
+                color: overColor(),
               ),
               child: Row(
                 children: [
@@ -91,7 +91,7 @@ class SubTile extends StatelessWidget {
                   RotatedBox(
                     quarterTurns: 3,
                     child: Text(
-                      "TODO",
+                      _daysLate(),
                       style: GoogleFonts.lato(
                           textStyle: const TextStyle(
                               fontSize: 10,
@@ -104,8 +104,17 @@ class SubTile extends StatelessWidget {
             ),
           );
   }
+
+  String _daysLate() {
+    return (checkDate
+                .difference(DateFormat("dd/MM/y").parse(subs.upToRecord!))
+                .inDays ==
+            0
+        ? "Not late"
+        : "${checkDate.difference(DateFormat("dd/MM/y").parse(subs.upToRecord!)).inDays} days late");
+  }
 }
 
-Color OverColor() {
+Color overColor() {
   return Colors.greenAccent;
 }

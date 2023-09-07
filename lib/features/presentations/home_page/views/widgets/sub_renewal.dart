@@ -65,6 +65,7 @@ class _SubRenewalState extends State<SubRenewal> {
                     .archiveSubs(widget.subM.id!);
                 Navigator.pop(context);
                 BlocProvider.of<SubsCubit>(context).fetchActiveSubs();
+                BlocProvider.of<SubsCubit>(context).fetchArchiveSubs();
               });
             },
           ),

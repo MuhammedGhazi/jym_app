@@ -4,7 +4,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import 'package:jym_app/features/data/models/subscriber_model.dart';
 import 'package:jym_app/features/presentations/home_page/manag/cubits/subs_cubit/subs_cubit.dart';
-import 'sub_renewal.dart';
+
 import 'sub_renewal2.dart';
 import 'sub_tile2.dart';
 
@@ -32,7 +32,7 @@ class SubsListView3 extends StatelessWidget {
                             showModalBottomSheet(
                               context: context,
                               builder: (context) {
-                                return SubRenewal(
+                                return SubRenewal2(
                                   subM: subs[index],
                                 );
                               },

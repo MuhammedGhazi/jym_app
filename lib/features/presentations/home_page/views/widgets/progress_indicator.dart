@@ -20,13 +20,13 @@ class _MyProgressIndicatorState extends State<MyProgressIndicator> {
       padding: 0,
       selectedColor: Colors.yellow,
       unselectedColor: Colors.cyan,
-      roundedEdges: Radius.circular(10),
-      selectedGradientColor: LinearGradient(
+      roundedEdges: const Radius.circular(10),
+      selectedGradientColor: const LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
         colors: [Colors.red, Colors.orange],
       ),
-      unselectedGradientColor: LinearGradient(
+      unselectedGradientColor: const LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
         colors: [Colors.teal, Colors.green],

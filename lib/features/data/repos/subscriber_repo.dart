@@ -64,7 +64,6 @@ class SubsRepo {
   }
 
   Future<List<SubscriberModel>> getActiveSubs({int archive = 0}) async {
-    debugPrint("archive is $archive");
     var db = await sqlServices.db;
     List<SubscriberModel> subscribers = [];
     List<Map<String, dynamic>> map = await db.query("subs",
@@ -84,8 +83,38 @@ class SubsRepo {
         whereArgs: [archive]);
     for (var e in map) {
       subscribers.add(SubscriberModel.fromJson(e));
-      debugPrint("${subscribers.length}");
-      debugPrint("$e");
+    }
+    return subscribers;
+  }
+
+  Future<List<SubscriberModel>> getCategorySubs(
+      {required String category}) async {
+    var db = await sqlServices.db;
+    String cate =
+        category == "All" ? "category != 'All' " : "category = '$category'";
+    List<SubscriberModel> subscribers = [];
+    List<Map<String, dynamic>> mapcat = await db.rawQuery('''
+      SELECT * FROM subs
+      WHERE archive = 0 AND
+      $cate
+''');
+    // List<Map<String, dynamic>> map = await db.query("subs",
+    //     columns: [
+    //       "id",
+    //       "fullName",
+    //       "age",
+    //       "tall",
+    //       "weight",
+    //       "category",
+    //       "note",
+    //       "dateRecord",
+    //       "upToRecord",
+    //       "archive",
+    //     ],
+    //     where: "category=?",
+    //     whereArgs: [category]);
+    for (var e in mapcat) {
+      subscribers.add(SubscriberModel.fromJson(e));
     }
     return subscribers;
   }

@@ -24,7 +24,7 @@ class AddTaskView extends StatefulWidget {
 
 class _AddTaskViewState extends State<AddTaskView> {
   final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _classController = TextEditingController();
+
   int _age = 20;
   int _tall = 175;
   int _weight = 75;
@@ -47,7 +47,7 @@ class _AddTaskViewState extends State<AddTaskView> {
   Widget build(BuildContext context) {
     final cubit = context.read<ThemeCubit>();
     final cubitAddSubs = context.read<AddSubsCubit>();
-    final cubitSubs = context.read<SubsCubit>();
+    //final cubitSubs = context.read<SubsCubit>();
     return BlocListener<AddSubsCubit, AddSubsState>(
       listener: (context, state) {},
       child: Scaffold(
@@ -160,7 +160,6 @@ class _AddTaskViewState extends State<AddTaskView> {
                 InputField(
                   hint: _selectedClass,
                   title: 'category',
-                  controller: _classController,
                   widget: DropdownButton(
                     icon: const Icon(Icons.keyboard_arrow_down),
                     items:
@@ -177,7 +176,7 @@ class _AddTaskViewState extends State<AddTaskView> {
                     },
                   ),
                 ),
-                InputField(title: "note", hint: "$_note"),
+                InputField(title: "note", hint: _note),
                 Row(
                   children: [
                     Expanded(

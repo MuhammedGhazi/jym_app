@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage> {
         IconButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => SubscripersView(),
+                builder: (context) => const SubscripersView(),
               ));
               //BlocProvider.of<SubsCubit>(context).delDB();
             },
@@ -144,7 +144,7 @@ class _HomePageState extends State<HomePage> {
           backgroundImage: AssetImage("assets/images/jym_pro2.jpeg"),
           radius: 25,
         ),
-        SizedBox(
+        const SizedBox(
           width: 20,
         )
       ],

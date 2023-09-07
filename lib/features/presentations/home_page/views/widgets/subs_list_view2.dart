@@ -9,14 +9,14 @@ import 'sub_renewal.dart';
 import 'sub_tile2.dart';
 
 class SubsListView2 extends StatelessWidget {
-  const SubsListView2({Key? key}) : super(key: key);
-
+  const SubsListView2({Key? key, this.category = "GYM"}) : super(key: key);
+  final String category;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SubsCubit, SubsState>(
       builder: (context, state) {
         List<SubscriberModel> subs =
-            BlocProvider.of<SubsCubit>(context).allActiveSubs ?? [];
+            BlocProvider.of<SubsCubit>(context).classActiveSubs ?? [];
         return Expanded(
             child: ListView.builder(
           itemCount: subs.length,

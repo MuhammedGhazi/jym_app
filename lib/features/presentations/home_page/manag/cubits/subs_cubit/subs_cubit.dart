@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jym_app/features/data/models/subscriber_model.dart';
 import 'package:jym_app/features/data/repos/subscriber_repo.dart';
-import 'package:meta/meta.dart';
+//import 'package:meta/meta.dart';
 
 part 'subs_state.dart';
 
@@ -11,6 +11,7 @@ class SubsCubit extends Cubit<SubsState> {
   SubsRepo subsRepo = SubsRepo();
   List<SubscriberModel>? allsubs;
   List<SubscriberModel>? allActiveSubs;
+  List<SubscriberModel>? classActiveSubs;
   List<SubscriberModel>? allArchiveSubs;
   fetchAllSubs() async {
     allsubs = await subsRepo.getSubs();
@@ -19,13 +20,16 @@ class SubsCubit extends Cubit<SubsState> {
 
   fetchArchiveSubs() async {
     allArchiveSubs = await subsRepo.getActiveSubs(archive: 1);
-    debugPrint("fetchArchiveSubs");
+
     emit(SubsSuccess());
   }
 
-  fetchActiveSubs() async {
+  fetchActiveSubs({String cate = "All"}) async {
+    debugPrint("call ---fetchActiveSubs");
+    debugPrint("category is $cate");
     allActiveSubs = await subsRepo.getActiveSubs();
-    debugPrint("fetchActiveSubs");
+    classActiveSubs = await subsRepo.getCategorySubs(category: cate);
+
     emit(SubsSuccess());
   }
 
