@@ -4,13 +4,13 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import 'package:jym_app/features/data/models/subscriber_model.dart';
 import 'package:jym_app/features/presentations/home_page/manag/cubits/subs_cubit/subs_cubit.dart';
-import 'package:jym_app/features/presentations/home_page/views/widgets/sub_tile.dart';
-
 import 'sub_renewal.dart';
+// import 'sub_renewal2.dart';
+import 'sub_tile2.dart';
 
-class SubsListView extends StatelessWidget {
-  const SubsListView({Key? key, required this.checkDate}) : super(key: key);
-  final DateTime checkDate;
+class SubsListView2 extends StatelessWidget {
+  const SubsListView2({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SubsCubit, SubsState>(
@@ -38,9 +38,8 @@ class SubsListView extends StatelessWidget {
                               },
                             );
                           },
-                          child: SubTile(
+                          child: SubTile2(
                             subs: subs[index],
-                            checkDate: checkDate,
                           )))),
             );
           },

@@ -9,6 +9,7 @@ import 'package:jym_app/core/constants/stylies.dart';
 import 'package:jym_app/core/utils/services/notification_services.dart';
 import 'package:jym_app/features/presentations/home_page/manag/cubits/cubit/theme_cubit.dart';
 import 'package:jym_app/features/presentations/home_page/manag/cubits/subs_cubit/subs_cubit.dart';
+import 'package:jym_app/features/presentations/home_page/views/subscripers._view.dart';
 import 'package:jym_app/features/presentations/home_page/views/widgets/my_button.dart';
 import 'package:jym_app/features/presentations/home_page/views/widgets/subs_list_view.dart';
 
@@ -30,6 +31,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    BlocProvider.of<SubsCubit>(context).fetchActiveSubs();
     BlocProvider.of<SubsCubit>(context).fetchArchiveSubs();
     NotifyHelper.initialize(flutterLocalNotificationsPlugin);
   }
@@ -37,21 +39,20 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<ThemeCubit>();
-    //final cubitAddSub = context.read<AddSubsCubit>();
+
     final cubitSubs = context.read<SubsCubit>();
     DateTime selectedDate = DateTime.now();
-    var subs = cubitSubs.fetchArchiveSubs();
+    var subs = cubitSubs.fetchActiveSubs();
     return Scaffold(
-      appBar: _myAppBar(cubit),
-      body: Column(
-        children: [
-          _addTaskBar(),
-          _addDateBar(selectedDate),
-          const SizedBox(height: 10),
-          SubsListView(checkDate: _selectedDate),
-        ],
-      ),
-    );
+        appBar: _myAppBar(cubit),
+        body: Column(
+          children: [
+            _addTaskBar(),
+            _addDateBar(selectedDate),
+            const SizedBox(height: 10),
+            SubsListView(checkDate: _selectedDate),
+          ],
+        ));
   }
 
   Container _addDateBar(DateTime selectedDate) {
@@ -124,9 +125,21 @@ class _HomePageState extends State<HomePage> {
       actions: [
         IconButton(
             onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => SubscripersView(),
+              ));
               //BlocProvider.of<SubsCubit>(context).delDB();
             },
-            icon: const Icon(Icons.settings)),
+            icon: const Icon(
+              Icons.person,
+              color: Colors.grey,
+            )),
+        IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.settings,
+              color: Colors.grey,
+            )),
         const CircleAvatar(
           backgroundImage: AssetImage("assets/images/jym_pro2.jpeg"),
           radius: 25,

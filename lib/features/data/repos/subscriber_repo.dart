@@ -25,7 +25,7 @@ class SubsRepo {
     var db = await sqlServices.db;
     return db.update(
       "subs",
-      {"upToRecord": newDate},
+      {"upToRecord": newDate, "archive": 0},
       where: "id=?",
       whereArgs: [id],
     );
@@ -64,6 +64,7 @@ class SubsRepo {
   }
 
   Future<List<SubscriberModel>> getActiveSubs({int archive = 0}) async {
+    debugPrint("archive is $archive");
     var db = await sqlServices.db;
     List<SubscriberModel> subscribers = [];
     List<Map<String, dynamic>> map = await db.query("subs",

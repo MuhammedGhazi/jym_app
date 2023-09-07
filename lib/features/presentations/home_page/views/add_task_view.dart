@@ -253,7 +253,7 @@ class _AddTaskViewState extends State<AddTaskView> {
           upToRecord: DateFormat('dd/MM/y').format(_upToDate)));
 
       Navigator.pop(context);
-      BlocProvider.of<SubsCubit>(context).fetchArchiveSubs();
+      BlocProvider.of<SubsCubit>(context).fetchActiveSubs();
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("all feiled id required..")));

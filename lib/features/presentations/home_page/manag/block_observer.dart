@@ -9,53 +9,33 @@ class SimpleBlocObserver implements BlocObserver {
     debugPrint("change is : $change");
 
     @override
-    void onClose(BlocBase bloc) {
-      // TODO: implement onClose
-    }
+    void onClose(BlocBase bloc) {}
 
     @override
-    void onCreate(BlocBase bloc) {
-      // TODO: implement onCreate
-    }
+    void onCreate(BlocBase bloc) {}
 
     @override
-    void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
-      // TODO: implement onError
-    }
+    void onError(BlocBase bloc, Object error, StackTrace stackTrace) {}
 
     @override
-    void onEvent(Bloc bloc, Object? event) {
-      // TODO: implement onEvent
-    }
+    void onEvent(Bloc bloc, Object? event) {}
 
     @override
-    void onTransition(Bloc bloc, Transition transition) {
-      // TODO: implement onTransition
-    }
+    void onTransition(Bloc bloc, Transition transition) {}
   }
 
   @override
-  void onClose(BlocBase bloc) {
-    // TODO: implement onClose
-  }
+  void onClose(BlocBase bloc) {}
 
   @override
-  void onCreate(BlocBase bloc) {
-    // TODO: implement onCreate
-  }
+  void onCreate(BlocBase bloc) {}
 
   @override
-  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
-    // TODO: implement onError
-  }
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {}
 
   @override
-  void onEvent(Bloc bloc, Object? event) {
-    // TODO: implement onEvent
-  }
+  void onEvent(Bloc bloc, Object? event) {}
 
   @override
-  void onTransition(Bloc bloc, Transition transition) {
-    // TODO: implement onTransition
-  }
+  void onTransition(Bloc bloc, Transition transition) {}
 }

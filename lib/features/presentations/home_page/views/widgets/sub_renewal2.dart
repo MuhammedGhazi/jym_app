@@ -6,15 +6,15 @@ import '../../manag/cubits/subs_cubit/subs_cubit.dart';
 import 'input_field.dart';
 import 'my_button.dart';
 
-class SubRenewal extends StatefulWidget {
-  const SubRenewal({super.key, required this.subM});
+class SubRenewal2 extends StatefulWidget {
+  const SubRenewal2({super.key, required this.subM});
   final SubscriberModel subM;
 
   @override
-  State<SubRenewal> createState() => _SubRenewalState();
+  State<SubRenewal2> createState() => _SubRenewal2State();
 }
 
-class _SubRenewalState extends State<SubRenewal> {
+class _SubRenewal2State extends State<SubRenewal2> {
   String? recodTo;
 
   @override
@@ -53,19 +53,7 @@ class _SubRenewalState extends State<SubRenewal> {
                   recodTo ??
                       _addMonthToDate(widget.subM.upToRecord.toString(), 1));
               Navigator.pop(context);
-              BlocProvider.of<SubsCubit>(context).fetchActiveSubs();
-            },
-          ),
-          const SizedBox(height: 5),
-          MyButton(
-            lable: "archive",
-            onTap: () {
-              setState(() {
-                BlocProvider.of<SubsCubit>(context)
-                    .archiveSubs(widget.subM.id!);
-                Navigator.pop(context);
-                BlocProvider.of<SubsCubit>(context).fetchActiveSubs();
-              });
+              BlocProvider.of<SubsCubit>(context).fetchArchiveSubs();
             },
           ),
           const SizedBox(height: 5),
@@ -75,7 +63,7 @@ class _SubRenewalState extends State<SubRenewal> {
               setState(() {
                 BlocProvider.of<SubsCubit>(context).deleteSub(widget.subM.id!);
                 Navigator.pop(context);
-                BlocProvider.of<SubsCubit>(context).fetchActiveSubs();
+                BlocProvider.of<SubsCubit>(context).fetchArchiveSubs();
               });
             },
           ),

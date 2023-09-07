@@ -64,6 +64,7 @@ class SubTile extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white)),
                       ),
+                      const SizedBox(height: 5),
                       MyProgressIndicator(
                           steps: checkDate
                                       .difference(DateFormat("dd/MM/y")

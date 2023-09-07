@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jym_app/features/data/models/subscriber_model.dart';
 import 'package:jym_app/features/data/repos/subscriber_repo.dart';
@@ -9,13 +10,22 @@ class SubsCubit extends Cubit<SubsState> {
   SubsCubit() : super(SubsInitial());
   SubsRepo subsRepo = SubsRepo();
   List<SubscriberModel>? allsubs;
+  List<SubscriberModel>? allActiveSubs;
+  List<SubscriberModel>? allArchiveSubs;
   fetchAllSubs() async {
     allsubs = await subsRepo.getSubs();
     emit(SubsSuccess());
   }
 
   fetchArchiveSubs() async {
-    allsubs = await subsRepo.getActiveSubs();
+    allArchiveSubs = await subsRepo.getActiveSubs(archive: 1);
+    debugPrint("fetchArchiveSubs");
+    emit(SubsSuccess());
+  }
+
+  fetchActiveSubs() async {
+    allActiveSubs = await subsRepo.getActiveSubs();
+    debugPrint("fetchActiveSubs");
     emit(SubsSuccess());
   }
 
