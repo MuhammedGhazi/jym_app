@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:jym_app/core/constants/constants.dart';
 import 'package:jym_app/core/constants/stylies.dart';
@@ -43,6 +45,19 @@ class _AddTaskViewState extends State<AddTaskView> {
     "taekwondo"
   ];
   int _selectedColor = 0;
+  File? _imageFile;
+  Future<void> _takePicture() async {
+    final picker = ImagePicker();
+    final imageFile =
+        await picker.pickImage(source: ImageSource.camera, maxWidth: 300);
+    if (imageFile == null) {
+      return;
+    }
+    setState(() {
+      _imageFile = File(imageFile.path);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<ThemeCubit>();
@@ -79,10 +94,21 @@ class _AddTaskViewState extends State<AddTaskView> {
                     const SizedBox(
                       width: 10,
                     ),
-                    const CircleAvatar(
-                      backgroundImage:
-                          AssetImage("assets/images/jym_profile.jpeg"),
-                      radius: 50,
+                    GestureDetector(
+                      onTap: () {
+                        _takePicture();
+                      },
+                      child: CircleAvatar(
+                        child: _imageFile == null
+                            ? null
+                            : Image.file(
+                                _imageFile!,
+                                fit: BoxFit.cover,
+                              ),
+                        backgroundImage:
+                            const AssetImage("assets/images/jym_profile.jpeg"),
+                        radius: 50,
+                      ),
                     ),
                   ],
                 ),
