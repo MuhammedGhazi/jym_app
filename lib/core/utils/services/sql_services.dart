@@ -26,11 +26,12 @@ class SqlServices {
           note TEXT,
           dateRecord TEXT,
           upToRecord TExT,
-          archive INTEGER)
+          archive INTEGER,
+          image TEXT)
           ''');
         // ignore: avoid_print
         print(
-            "create date base and table successful====================================");
+            "create datebase and table successful====================================");
       },
     );
     return db;

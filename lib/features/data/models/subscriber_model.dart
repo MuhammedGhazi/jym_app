@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+
 class SubscriberModel {
   int? id;
   String? fullName;
@@ -9,6 +13,7 @@ class SubscriberModel {
   String? dateRecord;
   String? upToRecord;
   int? archive;
+  File? image;
   SubscriberModel(
       {this.id,
       this.fullName,
@@ -19,7 +24,8 @@ class SubscriberModel {
       this.note,
       this.dateRecord,
       this.upToRecord,
-      this.archive});
+      this.archive,
+      this.image});
   SubscriberModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     fullName = json['fullName'];
@@ -31,6 +37,9 @@ class SubscriberModel {
     dateRecord = json['dateRecord'];
     upToRecord = json['upToRecord'];
     archive = json['archive'];
+    if (json['image'] != null) {
+      image = File(json['image']);
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -46,6 +55,8 @@ class SubscriberModel {
     data['dateRecord'] = dateRecord;
     data['upToRecord'] = upToRecord;
     data['archive'] = archive;
+    data['image'] = image?.path;
+    debugPrint("tojson...:---${data['image']}");
     return data;
   }
 }

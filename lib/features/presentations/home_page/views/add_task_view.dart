@@ -12,7 +12,8 @@ import 'package:jym_app/features/presentations/home_page/manag/cubits/add_subs_c
 import 'package:jym_app/features/presentations/home_page/manag/cubits/subs_cubit/subs_cubit.dart';
 import 'package:jym_app/features/presentations/home_page/views/widgets/my_button.dart';
 import 'package:numberpicker/numberpicker.dart';
-
+import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart' as syspath;
 import '../manag/cubits/cubit/theme_cubit.dart';
 import 'widgets/input_field.dart';
 import 'widgets/input_field2.dart';
@@ -46,6 +47,8 @@ class _AddTaskViewState extends State<AddTaskView> {
   ];
   int _selectedColor = 0;
   File? _imageFile;
+  File? saveImagePath;
+
   Future<void> _takePicture() async {
     final picker = ImagePicker();
     final imageFile =
@@ -56,6 +59,11 @@ class _AddTaskViewState extends State<AddTaskView> {
     setState(() {
       _imageFile = File(imageFile.path);
     });
+    final apDir = await syspath.getApplicationDocumentsDirectory();
+    final fileName = path.basename(imageFile.path);
+    saveImagePath = await _imageFile!.copy('${apDir.path}/$fileName');
+    //debugPrint(saveImagePath!.path);
+    // widget.imageSaveAt(saveImagePath);
   }
 
   @override
@@ -99,15 +107,14 @@ class _AddTaskViewState extends State<AddTaskView> {
                         _takePicture();
                       },
                       child: CircleAvatar(
-                        child: _imageFile == null
+                        backgroundImage: _imageFile == null
                             ? null
-                            : Image.file(
-                                _imageFile!,
-                                fit: BoxFit.cover,
-                              ),
-                        backgroundImage:
-                            const AssetImage("assets/images/jym_profile.jpeg"),
+                            : FileImage(File(_imageFile!.path)),
+                        // const AssetImage("assets/images/jym_profile.jpeg"),
                         radius: 50,
+                        child: _imageFile == null
+                            ? const Icon(Icons.add_a_photo)
+                            : null,
                       ),
                     ),
                   ],
@@ -266,6 +273,7 @@ class _AddTaskViewState extends State<AddTaskView> {
 
   _validateDate(AddSubsCubit cubitAddSubs) {
     if (_titleController.text.isNotEmpty) {
+      // debugPrint(saveImagePath!.path);
       cubitAddSubs.addSub(SubscriberModel(
           fullName: _titleController.text,
           category: _selectedClass,
@@ -275,6 +283,7 @@ class _AddTaskViewState extends State<AddTaskView> {
           tall: _tall,
           weight: _weight,
           archive: 0,
+          image: saveImagePath,
           upToRecord: DateFormat('dd/MM/y').format(_upToDate)));
 
       Navigator.pop(context);

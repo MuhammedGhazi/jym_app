@@ -6,7 +6,7 @@ class SubsRepo {
   SqlServices sqlServices = SqlServices();
   Future<int> add(SubscriberModel subscriberModel) async {
     var db = await sqlServices.db;
-
+    //debugPrint("subsprepo.add:--${subscriberModel.image!.path}");
     return db.insert("subs", subscriberModel.toJson());
   }
 
@@ -54,11 +54,12 @@ class SubsRepo {
       "dateRecord",
       "upToRecord",
       "archive",
+      "image",
     ]);
     for (var e in map) {
       subscribers.add(SubscriberModel.fromJson(e));
-      debugPrint("${subscribers.length}");
-      debugPrint("$e");
+      // debugPrint("${subscribers.length}");
+      // debugPrint("$e");
     }
     return subscribers;
   }
@@ -78,6 +79,7 @@ class SubsRepo {
           "dateRecord",
           "upToRecord",
           "archive",
+          "image",
         ],
         where: "archive=?",
         whereArgs: [archive]);
@@ -98,21 +100,7 @@ class SubsRepo {
       WHERE archive = 0 AND
       $cate
 ''');
-    // List<Map<String, dynamic>> map = await db.query("subs",
-    //     columns: [
-    //       "id",
-    //       "fullName",
-    //       "age",
-    //       "tall",
-    //       "weight",
-    //       "category",
-    //       "note",
-    //       "dateRecord",
-    //       "upToRecord",
-    //       "archive",
-    //     ],
-    //     where: "category=?",
-    //     whereArgs: [category]);
+
     for (var e in mapcat) {
       subscribers.add(SubscriberModel.fromJson(e));
     }

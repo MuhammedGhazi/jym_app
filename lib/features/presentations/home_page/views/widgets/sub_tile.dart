@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -39,6 +41,7 @@ class SubTile extends StatelessWidget {
                                 color: Colors.white)),
                       ),
                       const SizedBox(height: 12),
+                      //Text(subs.image!.path),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -46,12 +49,18 @@ class SubTile extends StatelessWidget {
                               color: Colors.grey[200], size: 18),
                           const SizedBox(width: 4),
                           Text(
-                            "${subs.dateRecord}----${subs.upToRecord}",
+                            "record to ---${subs.upToRecord}",
                             style: GoogleFonts.lato(
                                 textStyle: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white)),
+                          ),
+                          CircleAvatar(
+                            radius: 40,
+                            backgroundImage: subs.image == null
+                                ? null
+                                : FileImage(File(subs.image!.path)),
                           )
                         ],
                       ),

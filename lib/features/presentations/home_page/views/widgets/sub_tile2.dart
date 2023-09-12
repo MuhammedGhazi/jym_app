@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -47,6 +49,12 @@ class SubTile2 extends StatelessWidget {
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               color: Colors.white)),
+                    ),
+                    CircleAvatar(
+                      radius: 40,
+                      backgroundImage: subs.image == null
+                          ? null
+                          : FileImage(File(subs.image!.path)),
                     )
                   ],
                 ),
@@ -68,17 +76,6 @@ class SubTile2 extends StatelessWidget {
               width: 0.5,
               color: Colors.grey[200]!.withOpacity(0.7),
             ),
-            RotatedBox(
-              quarterTurns: 3,
-              child: Text(
-                "TODO",
-                style: GoogleFonts.lato(
-                    textStyle: const TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white)),
-              ),
-            )
           ],
         ),
       ),

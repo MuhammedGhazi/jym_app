@@ -128,14 +128,15 @@ class _HomePageState extends State<HomePage> {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => const SubscripersView(),
               ));
-              //BlocProvider.of<SubsCubit>(context).delDB();
             },
             icon: const Icon(
               Icons.person,
               color: Colors.grey,
             )),
         IconButton(
-            onPressed: () {},
+            onPressed: () {
+              BlocProvider.of<SubsCubit>(context).delDB();
+            },
             icon: const Icon(
               Icons.settings,
               color: Colors.grey,
