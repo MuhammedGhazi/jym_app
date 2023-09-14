@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SimpleBlocObserver implements BlocObserver {
   @override
   void onChange(BlocBase bloc, Change change) {
-    debugPrint("change is : $change");
+    debugPrint(" bloc is: $bloc change is : $change");
 
     @override
     void onClose(BlocBase bloc) {}

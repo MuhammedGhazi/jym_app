@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jym_app/features/presentations/home_page/manag/cubits/cubit/theme_cubit.dart';
+
+import '../../features/presentations/home_page/manag/cubits/them_cubit/theme_cubit.dart';
 
 class Stylies {
   static TextStyle subHeadingStyle() {

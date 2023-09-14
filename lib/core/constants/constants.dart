@@ -7,11 +7,11 @@ const Color white = Colors.white;
 const primaryClr = bluishClr;
 const darkGreyClr = Color(0xff121212);
 const darkHeaderClr = Color(0xff424242);
-const List<String> classList = [
-  "GYM",
-  "karati",
-  "Karate",
-  "Judo",
-  "boxing",
-  "taekwondo"
-];
+// const List<String> classList = [
+//   "GYM",
+//   "karati",
+//   "Karate",
+//   "Judo",
+//   "boxing",
+//   "taekwondo"
+// ];

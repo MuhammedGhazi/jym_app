@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../manag/cubits/cubit/theme_cubit.dart';
+import '../../manag/cubits/them_cubit/theme_cubit.dart';
 
 class IconMode extends StatelessWidget {
   const IconMode({

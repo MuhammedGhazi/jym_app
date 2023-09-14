@@ -14,7 +14,8 @@ import 'package:jym_app/features/presentations/home_page/views/widgets/my_button
 import 'package:numberpicker/numberpicker.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart' as syspath;
-import '../manag/cubits/cubit/theme_cubit.dart';
+import '../manag/cubits/category_cubit/category_cubit.dart';
+import '../manag/cubits/them_cubit/theme_cubit.dart';
 import 'widgets/input_field.dart';
 import 'widgets/input_field2.dart';
 
@@ -37,14 +38,14 @@ class _AddTaskViewState extends State<AddTaskView> {
       DateTime.now().year, DateTime.now().month + 1, DateTime.now().day);
 
   String _selectedClass = "GYM";
-  List<String> classList = [
-    "GYM",
-    "karati",
-    "Karate",
-    "Judo",
-    "boxing",
-    "taekwondo"
-  ];
+  // List<String> classList = [
+  //   "GYM",
+  //   "karati",
+  //   "Karate",
+  //   "Judo",
+  //   "boxing",
+  //   "taekwondo"
+  // ];
   int _selectedColor = 0;
   File? _imageFile;
   File? saveImagePath;
@@ -195,8 +196,9 @@ class _AddTaskViewState extends State<AddTaskView> {
                   title: 'category',
                   widget: DropdownButton(
                     icon: const Icon(Icons.keyboard_arrow_down),
-                    items:
-                        classList.map<DropdownMenuItem<String>>((String value) {
+                    items: BlocProvider.of<CategoryCubit>(context)
+                        .categories
+                        .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value),

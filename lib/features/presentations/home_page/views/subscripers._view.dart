@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:jym_app/core/constants/constants.dart';
+// import 'package:jym_app/core/constants/constants.dart';
 import 'package:jym_app/features/data/models/subscriber_model.dart';
 import 'package:jym_app/features/presentations/home_page/manag/cubits/subs_cubit/subs_cubit.dart';
 import 'package:jym_app/features/presentations/home_page/views/archive_view.dart';
 import 'package:jym_app/features/presentations/home_page/views/widgets/subs_list_view_standard.dart';
 
+import '../manag/cubits/category_cubit/category_cubit.dart';
 import 'widgets/input_field.dart';
 
 import 'widgets/subs_list_view2.dart';
@@ -21,9 +22,10 @@ class SubscripersView extends StatefulWidget {
 class _SubscripersViewState extends State<SubscripersView> {
   final TextEditingController _classController = TextEditingController();
   String _selectedClass = "All";
-  List<String> cList = classList.toList();
+  List<String> cList = [];
   @override
   void initState() {
+    cList = BlocProvider.of<CategoryCubit>(context).categories;
     cList.add("All");
     BlocProvider.of<SubsCubit>(context).fetchActiveSubs();
     super.initState();
@@ -44,12 +46,12 @@ class _SubscripersViewState extends State<SubscripersView> {
                   //     in BlocProvider.of<SubsCubit>(context).classActiveSubs!) {
                   //   names.add(element.fullName!);
                   // }
-                  var Subs =
+                  var subs =
                       BlocProvider.of<SubsCubit>(context).classActiveSubs ?? [];
 
                   showSearch(
                       context: context,
-                      delegate: CustomSearchDelegateSubs(Subs));
+                      delegate: CustomSearchDelegateSubs(subs));
                 },
                 icon: const Icon(Icons.search)),
             IconButton(

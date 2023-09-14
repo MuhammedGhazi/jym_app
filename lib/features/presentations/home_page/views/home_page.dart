@@ -7,12 +7,12 @@ import 'package:intl/intl.dart';
 import 'package:jym_app/core/constants/constants.dart';
 import 'package:jym_app/core/constants/stylies.dart';
 import 'package:jym_app/core/utils/services/notification_services.dart';
-import 'package:jym_app/features/presentations/home_page/manag/cubits/cubit/theme_cubit.dart';
 import 'package:jym_app/features/presentations/home_page/manag/cubits/subs_cubit/subs_cubit.dart';
 import 'package:jym_app/features/presentations/home_page/views/subscripers._view.dart';
 import 'package:jym_app/features/presentations/home_page/views/widgets/my_button.dart';
 import 'package:jym_app/features/presentations/home_page/views/widgets/subs_list_view.dart';
 
+import '../manag/cubits/them_cubit/theme_cubit.dart';
 import 'widgets/icon_mode.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -26,8 +26,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  //DateTime _selectedTime = DateTime.now();
   DateTime _selectedDate = DateTime.now();
+
   @override
   void initState() {
     super.initState();
@@ -40,9 +40,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final cubit = context.read<ThemeCubit>();
 
-    final cubitSubs = context.read<SubsCubit>();
+    // final cubitSubs = context.read<SubsCubit>();
     DateTime selectedDate = DateTime.now();
-    var subs = cubitSubs.fetchActiveSubs();
+    // var subs = cubitSubs.fetchActiveSubs();
     return Scaffold(
         appBar: _myAppBar(cubit),
         body: Column(
@@ -135,7 +135,9 @@ class _HomePageState extends State<HomePage> {
             )),
         IconButton(
             onPressed: () {
-              BlocProvider.of<SubsCubit>(context).delDB();
+              //   Scaffold.of(context).openDrawer();
+              // scaffoldKey.currentState!.openDrawer();
+              //  BlocProvider.of<SubsCubit>(context).delDB();
             },
             icon: const Icon(
               Icons.settings,

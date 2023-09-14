@@ -86,10 +86,10 @@ class _SubRenewalState extends State<SubRenewal> {
   }
 
   String _addMonthToDate(String oldDate, int addedMonths) {
-    DateTime _tempDate = DateFormat("dd/MM/y").parse(oldDate);
-    _tempDate =
-        DateTime(_tempDate.year, _tempDate.month + addedMonths, _tempDate.day);
-    return DateFormat("dd/MM/y").format(_tempDate).toString();
+    DateTime tempDate = DateFormat("dd/MM/y").parse(oldDate);
+    tempDate =
+        DateTime(tempDate.year, tempDate.month + addedMonths, tempDate.day);
+    return DateFormat("dd/MM/y").format(tempDate).toString();
   }
 
   Future<DateTime?> _getDateFromUser(BuildContext mContext) async {
