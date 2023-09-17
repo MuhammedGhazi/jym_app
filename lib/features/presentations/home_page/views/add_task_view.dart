@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -21,14 +20,12 @@ import 'widgets/input_field2.dart';
 
 class AddTaskView extends StatefulWidget {
   const AddTaskView({Key? key, required Text title}) : super(key: key);
-
   @override
   State<AddTaskView> createState() => _AddTaskViewState();
 }
 
 class _AddTaskViewState extends State<AddTaskView> {
   final TextEditingController _titleController = TextEditingController();
-
   int _age = 20;
   int _tall = 175;
   int _weight = 75;
@@ -36,20 +33,10 @@ class _AddTaskViewState extends State<AddTaskView> {
   DateTime _selectedDate = DateTime.now();
   DateTime _upToDate = DateTime(
       DateTime.now().year, DateTime.now().month + 1, DateTime.now().day);
-
   String _selectedClass = "GYM";
-  // List<String> classList = [
-  //   "GYM",
-  //   "karati",
-  //   "Karate",
-  //   "Judo",
-  //   "boxing",
-  //   "taekwondo"
-  // ];
   int _selectedColor = 0;
   File? _imageFile;
   File? saveImagePath;
-
   Future<void> _takePicture() async {
     final picker = ImagePicker();
     final imageFile =
@@ -63,19 +50,15 @@ class _AddTaskViewState extends State<AddTaskView> {
     final apDir = await syspath.getApplicationDocumentsDirectory();
     final fileName = path.basename(imageFile.path);
     saveImagePath = await _imageFile!.copy('${apDir.path}/$fileName');
-    //debugPrint(saveImagePath!.path);
-    // widget.imageSaveAt(saveImagePath);
   }
 
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<ThemeCubit>();
     final cubitAddSubs = context.read<AddSubsCubit>();
-    //final cubitSubs = context.read<SubsCubit>();
     return BlocListener<AddSubsCubit, AddSubsState>(
       listener: (context, state) {},
       child: Scaffold(
-        //  backgroundColor: ,
         appBar: _myAppBar(context, cubit),
         body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -111,7 +94,6 @@ class _AddTaskViewState extends State<AddTaskView> {
                         backgroundImage: _imageFile == null
                             ? null
                             : FileImage(File(_imageFile!.path)),
-                        // const AssetImage("assets/images/jym_profile.jpeg"),
                         radius: 50,
                         child: _imageFile == null
                             ? const Icon(Icons.add_a_photo)
@@ -275,7 +257,6 @@ class _AddTaskViewState extends State<AddTaskView> {
 
   _validateDate(AddSubsCubit cubitAddSubs) {
     if (_titleController.text.isNotEmpty) {
-      // debugPrint(saveImagePath!.path);
       cubitAddSubs.addSub(SubscriberModel(
           fullName: _titleController.text,
           category: _selectedClass,

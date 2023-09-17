@@ -6,6 +6,14 @@ part 'category_state.dart';
 class CategoryCubit extends Cubit<List<String>> {
   CategoryCubit() : super(ThemeService().categoryKey);
   var categories = ThemeService().categoryKey;
+  addCatg(String cat) {
+    categories.add(cat);
+  }
+
+  removeCatg(String value) {
+    categories.remove(value);
+  }
+
   getCategories() {
     categories = ThemeService().categoryKey;
     emit(state);
