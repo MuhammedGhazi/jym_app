@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
-
 import 'package:jym_app/core/utils/theme/theme.dart';
 import 'package:jym_app/features/presentations/home_page/manag/block_observer.dart';
 import 'package:jym_app/features/presentations/home_page/manag/cubits/add_subs_cubit/add_subs_cubit.dart';
 import 'package:jym_app/features/presentations/home_page/views/home_page.dart';
 import 'package:jym_app/features/presentations/home_page/views/add_task_view.dart';
-
 import 'features/presentations/home_page/manag/cubits/category_cubit/category_cubit.dart';
 import 'features/presentations/home_page/manag/cubits/subs_cubit/subs_cubit.dart';
 import 'features/presentations/home_page/manag/cubits/them_cubit/theme_cubit.dart';
-
-//import 'features/presentations/home_page/manag/cubits/theme_cubit/theme_cubit.dart';
+import 'features/presentations/home_page/views/setting_view.dart';
 
 void main() async {
   Bloc.observer = SimpleBlocObserver();
@@ -53,6 +50,7 @@ class MyApp extends StatelessWidget {
             routes: <String, WidgetBuilder>{
               'addTask': (BuildContext context) =>
                   const AddTaskView(title: Text('page A')),
+              'setting': (BuildContext context) => const SettingView(),
             },
           );
         },
