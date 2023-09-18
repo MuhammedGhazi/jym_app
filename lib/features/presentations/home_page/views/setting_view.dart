@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:jym_app/features/presentations/home_page/manag/cubits/category_cubit/category_cubit.dart';
 import 'package:jym_app/features/presentations/home_page/views/widgets/category_list_view.dart';
-import 'package:jym_app/features/presentations/home_page/views/widgets/input_field.dart';
 
 class SettingView extends StatefulWidget {
   const SettingView({Key? key}) : super(key: key);
@@ -35,7 +33,7 @@ class _SettingViewState extends State<SettingView> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(18))),
                 )),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 ElevatedButton(
@@ -47,13 +45,14 @@ class _SettingViewState extends State<SettingView> {
                       });
                     } else {}
                   },
+                  style:
+                      const ButtonStyle(alignment: AlignmentDirectional.center),
                   child: const Text("add category"),
-                  style: ButtonStyle(alignment: AlignmentDirectional.center),
                 )
               ],
             ),
           ),
-          CategoryListView(),
+          const CategoryListView(),
         ],
       ),
     );

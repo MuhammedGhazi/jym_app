@@ -25,8 +25,11 @@ class _SubscripersViewState extends State<SubscripersView> {
   List<String> cList = [];
   @override
   void initState() {
-    cList = BlocProvider.of<CategoryCubit>(context).categories;
-    cList.add("All");
+    cList = BlocProvider.of<CategoryCubit>(context).categories.toList();
+    if (!cList.contains("All")) {
+      cList.add("All");
+    }
+
     BlocProvider.of<SubsCubit>(context).fetchActiveSubs();
     super.initState();
   }
@@ -41,11 +44,6 @@ class _SubscripersViewState extends State<SubscripersView> {
           actions: [
             IconButton(
                 onPressed: () {
-                  // List<String> names = [];
-                  // for (var element
-                  //     in BlocProvider.of<SubsCubit>(context).classActiveSubs!) {
-                  //   names.add(element.fullName!);
-                  // }
                   var subs =
                       BlocProvider.of<SubsCubit>(context).classActiveSubs ?? [];
 

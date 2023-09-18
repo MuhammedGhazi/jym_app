@@ -3,9 +3,11 @@ import 'package:meta/meta.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'category_state.dart';
 
-class CategoryCubit extends Cubit<List<String>> {
-  CategoryCubit() : super(ThemeService().categoryKey);
-  var categories = ThemeService().categoryKey;
+class CategoryCubit extends Cubit<ThemeService> {
+  CategoryCubit() : super(ThemeService());
+
+  List<String> categories = ThemeService().categories().toList();
+
   addCatg(String cat) {
     categories.add(cat);
   }
@@ -14,13 +16,13 @@ class CategoryCubit extends Cubit<List<String>> {
     categories.remove(value);
   }
 
-  getCategories() {
-    categories = ThemeService().categoryKey;
-    emit(state);
-  }
+  // getCategories() {
+  //   categories = ThemeService().Categories;
+  //   emit(state);
+  // }
 
   setCategories(List<String> ls) {
-    ThemeService().categoryKey = ls;
+    ThemeService().updateCategoryKey(ls);
     emit(state);
   }
 }

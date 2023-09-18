@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
-              DrawerHeader(
+              const DrawerHeader(
                 decoration: BoxDecoration(
                   color: Colors.blue,
                 ),
@@ -52,13 +52,13 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               ListTile(
-                title: Text('setting'),
+                title: const Text('setting'),
                 onTap: () {
                   Navigator.of(context).pushNamed('setting');
                 },
               ),
               ListTile(
-                title: Text('Item 2'),
+                title: const Text('Item 2'),
                 onTap: () {
                   // Handle drawer item 2 selection
                 },

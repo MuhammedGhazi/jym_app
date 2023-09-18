@@ -11,16 +11,16 @@ class ThemeService {
     _box.write(_key, !_loadThemeFromBox());
   }
 
+  final _categoryKey = "categories";
   List<String> _loadCategoriesFromBox() =>
       _box.read(_categoryKey) ??
       ["GYM", "karati", "Karate", "Judo", "boxing", "taekwondo"];
 
-  final _categoryKey = "categories";
-  set categoryKey(List<String> listCategory) {
+  updateCategoryKey(List<String> listCategory) {
     _box.write(_categoryKey, listCategory);
   }
 
-  List<String> get categoryKey {
+  List<String> categories() {
     return _loadCategoriesFromBox();
   }
 }
