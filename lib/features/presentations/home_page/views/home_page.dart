@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jym_app/core/constants/constants.dart';
+import 'package:jym_app/core/utils/services/catogary_service.dart';
 import 'package:jym_app/core/utils/services/notification_services.dart';
 import 'package:jym_app/features/presentations/home_page/manag/cubits/subs_cubit/subs_cubit.dart';
 import 'package:jym_app/features/presentations/home_page/views/widgets/subs_list_view.dart';
@@ -61,6 +62,7 @@ class _HomePageState extends State<HomePage> {
                 title: const Text('Item 2'),
                 onTap: () {
                   // Handle drawer item 2 selection
+                  CatogaryService().initg();
                 },
               ),
             ],

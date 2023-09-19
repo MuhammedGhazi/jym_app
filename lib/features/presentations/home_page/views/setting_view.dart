@@ -40,7 +40,8 @@ class _SettingViewState extends State<SettingView> {
                   onPressed: () {
                     if (_categoryController.text.isNotEmpty) {
                       setState(() {
-                        catgCubit.categories.add(_categoryController.text);
+                        // catgCubit.categories.add(_categoryController.text);
+                        catgCubit.addCatg(_categoryController.text);
                         _categoryController.text = "";
                       });
                     } else {}

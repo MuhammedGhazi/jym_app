@@ -3,7 +3,9 @@ import 'package:get_storage/get_storage.dart';
 
 class ThemeService {
   final _box = GetStorage();
+
   final _key = "isDarkMood";
+  final _categoryKey = "categories";
 
   bool _loadThemeFromBox() => _box.read(_key) ?? false;
   ThemeMode get theme => _loadThemeFromBox() ? ThemeMode.dark : ThemeMode.light;
@@ -11,12 +13,19 @@ class ThemeService {
     _box.write(_key, !_loadThemeFromBox());
   }
 
-  final _categoryKey = "categories";
-  List<String> _loadCategoriesFromBox() =>
-      _box.read(_categoryKey) ??
-      ["GYM", "karati", "Karate", "Judo", "boxing", "taekwondo"];
+  dynamic _loadCategoriesFromBox() {
+    try {
+      if (_box.read(_categoryKey) == null) {
+        return ["GYM", "karati", "Karate", "Judo", "boxing", "taekwondo"];
+      } else {
+        return _box.read(_categoryKey);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 
-  updateCategoryKey(List<String> listCategory) {
+  updateCategories(List<String> listCategory) {
     _box.write(_categoryKey, listCategory);
   }
 
