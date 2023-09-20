@@ -29,7 +29,7 @@ class _AddTaskViewState extends State<AddTaskView> {
   int _age = 20;
   int _tall = 175;
   int _weight = 75;
-  String _note = "notes";
+  //String _note = "notes";
   DateTime _selectedDate = DateTime.now();
   DateTime _upToDate = DateTime(
       DateTime.now().year, DateTime.now().month + 1, DateTime.now().day);
@@ -193,7 +193,7 @@ class _AddTaskViewState extends State<AddTaskView> {
                     },
                   ),
                 ),
-                InputField(title: "note", hint: _note),
+                // InputField(title: "note", hint: _note),
                 Row(
                   children: [
                     Expanded(
@@ -261,7 +261,8 @@ class _AddTaskViewState extends State<AddTaskView> {
           fullName: _titleController.text,
           category: _selectedClass,
           dateRecord: DateFormat('dd/MM/y').format(_selectedDate).toString(),
-          note: _note,
+          note:
+              "First Record at :${DateFormat('dd/MM/y').format(_selectedDate).toString()} to ${DateFormat('dd/MM/y').format(_upToDate)} \n",
           age: _age,
           tall: _tall,
           weight: _weight,

@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:jym_app/core/utils/services/sql_services.dart';
 import 'package:jym_app/features/data/models/subscriber_model.dart';
 
@@ -22,9 +23,14 @@ class SubsRepo {
 
   Future<int> renewalSub(int id, String newDate) async {
     var db = await sqlServices.db;
+    var tempNote = await db.rawQuery('SELECT note FROM subs WHERE id = $id ');
+    String newNote =
+        "${tempNote[0]["note"].toString()}-At ${DateFormat('dd/MM/y').format(DateTime.now())} renewal to $newDate \n";
+
+    print(newNote);
     return db.update(
       "subs",
-      {"upToRecord": newDate, "archive": 0},
+      {"upToRecord": newDate, "archive": 0, "note": newNote},
       where: "id=?",
       whereArgs: [id],
     );

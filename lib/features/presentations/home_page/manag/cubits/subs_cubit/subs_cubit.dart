@@ -25,8 +25,6 @@ class SubsCubit extends Cubit<SubsState> {
   }
 
   fetchActiveSubs({String cate = "All"}) async {
-    debugPrint("call ---fetchActiveSubs");
-    debugPrint("category is $cate");
     allActiveSubs = await subsRepo.getActiveSubs();
     classActiveSubs = await subsRepo.getCategorySubs(category: cate);
 
@@ -40,6 +38,7 @@ class SubsCubit extends Cubit<SubsState> {
 
   renewalSubs(int id, String newDate) async {
     await subsRepo.renewalSub(id, newDate);
+    fetchActiveSubs();
     emit(SubsSuccess());
   }
 

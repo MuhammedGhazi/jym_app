@@ -45,41 +45,51 @@ class _SubRenewalState extends State<SubRenewal> {
                 icon: const Icon(Icons.calendar_today_outlined)),
           ),
           const SizedBox(height: 5),
-          MyButton(
-            lable: "renewal",
-            onTap: () {
-              BlocProvider.of<SubsCubit>(context).renewalSubs(
-                  widget.subM.id!,
-                  recodTo ??
-                      _addMonthToDate(widget.subM.upToRecord.toString(), 1));
-              Navigator.pop(context);
-              BlocProvider.of<SubsCubit>(context).fetchActiveSubs();
-            },
+          Row(
+            children: [
+              MyButton(
+                lable: "renewal",
+                onTap: () {
+                  BlocProvider.of<SubsCubit>(context).renewalSubs(
+                      widget.subM.id!,
+                      recodTo ??
+                          _addMonthToDate(
+                              widget.subM.upToRecord.toString(), 1));
+                  Navigator.pop(context);
+                  BlocProvider.of<SubsCubit>(context).fetchActiveSubs();
+                },
+              ),
+              const SizedBox(width: 5),
+              MyButton(
+                lable: "archive",
+                onTap: () {
+                  setState(() {
+                    BlocProvider.of<SubsCubit>(context)
+                        .archiveSubs(widget.subM.id!);
+                    Navigator.pop(context);
+                    BlocProvider.of<SubsCubit>(context).fetchActiveSubs();
+                    BlocProvider.of<SubsCubit>(context).fetchArchiveSubs();
+                  });
+                },
+              ),
+              const SizedBox(width: 5),
+              MyButton(
+                lable: "delete",
+                onTap: () {
+                  setState(() {
+                    BlocProvider.of<SubsCubit>(context)
+                        .deleteSub(widget.subM.id!);
+                    Navigator.pop(context);
+                    BlocProvider.of<SubsCubit>(context).fetchActiveSubs();
+                  });
+                },
+              ),
+            ],
           ),
-          const SizedBox(height: 5),
-          MyButton(
-            lable: "archive",
-            onTap: () {
-              setState(() {
-                BlocProvider.of<SubsCubit>(context)
-                    .archiveSubs(widget.subM.id!);
-                Navigator.pop(context);
-                BlocProvider.of<SubsCubit>(context).fetchActiveSubs();
-                BlocProvider.of<SubsCubit>(context).fetchArchiveSubs();
-              });
-            },
+          const SizedBox(
+            height: 5,
           ),
-          const SizedBox(height: 5),
-          MyButton(
-            lable: "delete",
-            onTap: () {
-              setState(() {
-                BlocProvider.of<SubsCubit>(context).deleteSub(widget.subM.id!);
-                Navigator.pop(context);
-                BlocProvider.of<SubsCubit>(context).fetchActiveSubs();
-              });
-            },
-          ),
+          Text(widget.subM.note.toString())
         ],
       ),
     );
