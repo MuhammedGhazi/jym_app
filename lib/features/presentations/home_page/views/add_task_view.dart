@@ -263,7 +263,7 @@ class _AddTaskViewState extends State<AddTaskView> {
           dateRecord: DateFormat('dd/MM/y').format(_selectedDate).toString(),
           note:
               "First Record at :${DateFormat('dd/MM/y').format(_selectedDate).toString()} to ${DateFormat('dd/MM/y').format(_upToDate)} \n",
-          age: _age,
+          age: DateTime.now().year - _age,
           tall: _tall,
           weight: _weight,
           archive: 0,

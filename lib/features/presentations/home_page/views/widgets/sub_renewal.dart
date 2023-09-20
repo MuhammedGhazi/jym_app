@@ -23,11 +23,11 @@ class _SubRenewalState extends State<SubRenewal> {
       padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
       child: Column(
         children: [
-          Text(widget.subM.fullName.toString()),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(widget.subM.category.toString()),
+          Text(
+              "Name: ${widget.subM.fullName.toString()}            Sport: ${widget.subM.category.toString()}"),
+          const SizedBox(height: 10),
+          Text(
+              "         Age: ${DateTime.now().year - widget.subM.age!}            Tall: ${widget.subM.tall}            Weight: ${widget.subM.weight}"),
           InputField(
             title: " renewal record to ",
             hint: recodTo ??
