@@ -6,6 +6,7 @@ import 'package:jym_app/features/presentations/home_page/manag/block_observer.da
 import 'package:jym_app/features/presentations/home_page/manag/cubits/add_subs_cubit/add_subs_cubit.dart';
 import 'package:jym_app/features/presentations/home_page/views/home_page.dart';
 import 'package:jym_app/features/presentations/home_page/views/add_task_view.dart';
+import 'package:jym_app/features/presentations/home_page/views/statistics_page.dart';
 import 'features/presentations/home_page/manag/cubits/category_cubit/category_cubit.dart';
 import 'features/presentations/home_page/manag/cubits/subs_cubit/subs_cubit.dart';
 import 'features/presentations/home_page/manag/cubits/them_cubit/theme_cubit.dart';
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
               'addTask': (BuildContext context) =>
                   const AddTaskView(title: Text('page A')),
               'setting': (BuildContext context) => const SettingView(),
+              'statistics': (BuildContext context) => const StatisticsPage(),
             },
           );
         },

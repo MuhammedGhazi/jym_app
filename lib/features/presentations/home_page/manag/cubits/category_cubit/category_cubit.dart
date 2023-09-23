@@ -18,14 +18,4 @@ class CategoryCubit extends Cubit<CatogaryService> {
     categories.remove(value);
     CatogaryService().updateCategories(categories);
   }
-
-  // getCategories() {
-  //   categories = ThemeService().Categories;
-  //   emit(state);
-  // }
-
-  // setCategories(List<String> ls) {
-  //   ThemeService().updateCategories(ls);
-  //   emit(state);
-  // }
 }

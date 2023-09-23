@@ -13,6 +13,7 @@ class SubsCubit extends Cubit<SubsState> {
   List<SubscriberModel>? allActiveSubs;
   List<SubscriberModel>? classActiveSubs;
   List<SubscriberModel>? allArchiveSubs;
+  List<Map>? infoCatg;
   fetchAllSubs() async {
     allsubs = await subsRepo.getSubs();
     emit(SubsSuccess());
@@ -27,9 +28,16 @@ class SubsCubit extends Cubit<SubsState> {
   fetchActiveSubs({String cate = "All"}) async {
     allActiveSubs = await subsRepo.getActiveSubs();
     classActiveSubs = await subsRepo.getCategorySubs(category: cate);
-
+    infoCatg = await subsRepo.infoCatg();
     emit(SubsSuccess());
   }
+
+  // Future<List<Map>> fetchInfoCatg() async {
+  //   var ic = await subsRepo.infoCatg();
+  //   infoCatg = await subsRepo.infoCatg();
+  //   print(ic);
+  //   return ic;
+  // }
 
   archiveSubs(int id) async {
     await subsRepo.archiveSub(id);

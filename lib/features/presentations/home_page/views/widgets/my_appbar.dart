@@ -58,9 +58,12 @@ class _MyAppBarState extends State<MyAppBar> {
               Icons.settings,
               color: Colors.grey,
             )),
-        const CircleAvatar(
-          backgroundImage: AssetImage("assets/images/jym_pro2.jpeg"),
-          radius: 25,
+        GestureDetector(
+          onTap: () => Navigator.of(context).pushNamed("statistics"),
+          child: const CircleAvatar(
+            backgroundImage: AssetImage("assets/images/jym_pro2.jpeg"),
+            radius: 25,
+          ),
         ),
         const SizedBox(
           width: 20,

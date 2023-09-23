@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:jym_app/core/utils/services/sql_services.dart';
 import 'package:jym_app/features/data/models/subscriber_model.dart';
@@ -27,7 +28,7 @@ class SubsRepo {
     String newNote =
         "${tempNote[0]["note"].toString()}-At ${DateFormat('dd/MM/y').format(DateTime.now())} renewal to $newDate \n";
 
-    print(newNote);
+    // print(newNote);
     return db.update(
       "subs",
       {"upToRecord": newDate, "archive": 0, "note": newNote},
@@ -43,6 +44,22 @@ class SubsRepo {
 
   deleteDB() async {
     sqlServices.deletDB();
+  }
+
+  Future<List<Map>> infoCatg() async {
+    var db = await sqlServices.db;
+
+    List<Map> infoC = await db.rawQuery('''
+          SELECT 
+          category,
+          COUNT(category),
+          avg(age),
+          avg(weight)
+          FROM subs 
+          WHERE archive = 0 
+          Group By category
+      ''');
+    return infoC;
   }
 
   Future<List<SubscriberModel>> getSubs() async {
