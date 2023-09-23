@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:jym_app/core/utils/services/sql_services.dart';
 import 'package:jym_app/features/data/models/subscriber_model.dart';
@@ -7,7 +7,6 @@ class SubsRepo {
   SqlServices sqlServices = SqlServices();
   Future<int> add(SubscriberModel subscriberModel) async {
     var db = await sqlServices.db;
-    //debugPrint("subsprepo.add:--${subscriberModel.image!.path}");
     return db.insert("subs", subscriberModel.toJson());
   }
 

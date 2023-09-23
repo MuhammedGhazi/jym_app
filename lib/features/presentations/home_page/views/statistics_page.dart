@@ -8,19 +8,20 @@ class StatisticsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          DataTable(
-            columns: const [
-              DataColumn(label: Text("category")),
-              DataColumn(label: Text("num")),
-              DataColumn(label: Text("age")),
-              DataColumn(label: Text("wieght")),
-            ],
-            rows: getLDR(context),
-          ),
-        ],
+      appBar: AppBar(
+        title: Text(
+            " All subscriber : ${BlocProvider.of<SubsCubit>(context).allActiveSubs == null ? 0 : BlocProvider.of<SubsCubit>(context).allActiveSubs!.length}"),
+      ),
+      body: SingleChildScrollView(
+        child: DataTable(
+          columns: const [
+            DataColumn(label: Text("category")),
+            DataColumn(label: Text("num")),
+            DataColumn(label: Text("age")),
+            DataColumn(label: Text("wieght")),
+          ],
+          rows: getLDR(context),
+        ),
       ),
     );
   }
