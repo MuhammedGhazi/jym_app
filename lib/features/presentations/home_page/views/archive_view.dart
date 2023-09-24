@@ -16,7 +16,7 @@ class ArchiveView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            " All Acchive Subscribers : ${BlocProvider.of<SubsCubit>(context).allArchiveSubs == null ? 0 : BlocProvider.of<SubsCubit>(context).allArchiveSubs!.length}"),
+            " All Archive Subscribers : ${BlocProvider.of<SubsCubit>(context).allArchiveSubs == null ? 0 : BlocProvider.of<SubsCubit>(context).allArchiveSubs!.length}"),
       ),
       body: Column(
         children: const [

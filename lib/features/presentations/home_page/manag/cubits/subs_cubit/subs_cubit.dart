@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jym_app/features/data/models/subscriber_model.dart';
 import 'package:jym_app/features/data/repos/subscriber_repo.dart';
-//import 'package:meta/meta.dart';
+import 'package:meta/meta.dart';
 
 part 'subs_state.dart';
 
@@ -31,13 +31,6 @@ class SubsCubit extends Cubit<SubsState> {
     infoCatg = await subsRepo.infoCatg();
     emit(SubsSuccess());
   }
-
-  // Future<List<Map>> fetchInfoCatg() async {
-  //   var ic = await subsRepo.infoCatg();
-  //   infoCatg = await subsRepo.infoCatg();
-  //   print(ic);
-  //   return ic;
-  // }
 
   archiveSubs(int id) async {
     await subsRepo.archiveSub(id);
