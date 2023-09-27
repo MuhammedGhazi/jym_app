@@ -239,7 +239,7 @@ class _AddTaskViewState extends State<AddTaskView> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _colorPallete(),
+                    // _colorPallete(),
                     MyButton(
                         lable: "إضافة",
                         onTap: () {

@@ -1,4 +1,7 @@
 // import 'package:flutter/material.dart';
+import 'dart:ffi';
+
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:jym_app/core/utils/services/sql_services.dart';
 import 'package:jym_app/features/data/models/subscriber_model.dart';
@@ -51,13 +54,19 @@ class SubsRepo {
     List<Map> infoC = await db.rawQuery('''
           SELECT 
           category,
-          COUNT(category),
-          avg(age),
-          avg(weight)
+          COUNT(category) AS count,
+          avg(age) AS AvAge,
+          avg(weight) AS AvWeight
           FROM subs 
           WHERE archive = 0 
           Group By category
       ''');
+    //   for (var e in infoC) {
+    //     var transformedMap = e.map((k, v) {
+    //   return MapEntry(k,k=="AvAge" ?DateTime.now().year-v :v);
+    // });
+    // }
+    print(infoC);
     return infoC;
   }
 

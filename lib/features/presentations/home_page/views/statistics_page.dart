@@ -37,8 +37,8 @@ class StatisticsPage extends StatelessWidget {
 
   DataRow getInfoCatg(Map dRow) {
     List<DataCell> dC = [];
-    dRow.forEach((key, value) {
-      dC.add(DataCell(Text("$value")));
+    dRow.forEach((k, v) {
+      dC.add(DataCell(Text("${k == "AvAge" ? DateTime.now().year - v : v}")));
     });
 
     return DataRow(cells: dC);

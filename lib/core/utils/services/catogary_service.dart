@@ -7,7 +7,7 @@ class CatogaryService {
 
   List<String> categories() {
     List<dynamic> storedList = _box.read(_key) ??
-        ["GYM", "karati", "Karate", "Judo", "boxing", "taekwondo"];
+        ["بناء الأجسام", "كرتيه", "جودو", "جمباز", "ملاكمة", "تيكوندو"];
     List<String> lg = storedList.cast<String>();
     return lg;
   }
