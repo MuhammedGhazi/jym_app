@@ -10,15 +10,15 @@ class StatisticsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            " All subscriber : ${BlocProvider.of<SubsCubit>(context).allActiveSubs == null ? 0 : BlocProvider.of<SubsCubit>(context).allActiveSubs!.length}"),
+            " إجمالي عدد المشتركين : ${BlocProvider.of<SubsCubit>(context).allActiveSubs == null ? 0 : BlocProvider.of<SubsCubit>(context).allActiveSubs!.length}"),
       ),
       body: SingleChildScrollView(
         child: DataTable(
           columns: const [
-            DataColumn(label: Text("category")),
-            DataColumn(label: Text("num")),
-            DataColumn(label: Text("age")),
-            DataColumn(label: Text("wieght")),
+            DataColumn(label: Text("الرياضة")),
+            DataColumn(label: Text("العدد")),
+            DataColumn(label: Text("معدل\n العمر")),
+            DataColumn(label: Text("معدل\n الوزن")),
           ],
           rows: getLDR(context),
         ),

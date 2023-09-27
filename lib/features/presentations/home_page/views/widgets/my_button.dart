@@ -19,7 +19,8 @@ class MyButton extends StatelessWidget {
         child: Center(
             child: Text(
           lable,
-          style: const TextStyle(color: Colors.white),
+          style: const TextStyle(
+              color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
         )),
       ),
     );

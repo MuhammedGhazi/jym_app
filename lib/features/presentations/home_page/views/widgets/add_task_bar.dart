@@ -26,25 +26,26 @@ class AddTaskBar extends StatelessWidget {
                 style: Stylies.subHeadingStyle(),
               ),
               Text(
-                'Today',
+                'تاريخ اليوم',
                 style: Stylies.headingStyle(),
               ),
             ],
           ),
           MyButton(
-              lable: " New subscriber",
+              lable: " إضافة مشترك",
               onTap: (() {
                 // BlocProvider.of<SubsCubit>(context).fetchActiveSubs();
                 debugPrint(
                     "${BlocProvider.of<SubsCubit>(context).allActiveSubs == null ? 0 : BlocProvider.of<SubsCubit>(context).allActiveSubs!.length} ??");
                 if (BlocProvider.of<SubsCubit>(context).allActiveSubs == null ||
                     BlocProvider.of<SubsCubit>(context).allActiveSubs!.length <
-                        6) {
+                        21) {
                   return Navigator.of(context).pushNamed('addTask');
                 } else {
                   showModalBottomSheet(
                     context: context,
-                    builder: (context) => const Text(" Hellow man!!"),
+                    builder: (context) =>
+                        const Text(" هذه نسخة تجريبة 20 مشترك حد أقصى"),
                   );
                 }
               }))

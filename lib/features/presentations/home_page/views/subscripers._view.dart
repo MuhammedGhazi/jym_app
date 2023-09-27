@@ -40,7 +40,7 @@ class _SubscripersViewState extends State<SubscripersView> {
       listener: (context, state) {},
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('All Subscripers'),
+          title: const Text('كل المشتركين'),
           actions: [
             IconButton(
                 onPressed: () {

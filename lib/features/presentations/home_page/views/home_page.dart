@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final cubit = context.read<ThemeCubit>();
     return Scaffold(
-        drawer: Drawer(
+        endDrawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.blue,
                 ),
                 child: Text(
-                  'Drawer Header',
+                  'إعدادات',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,
@@ -52,13 +52,13 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               ListTile(
-                title: const Text('setting'),
+                title: const Text('إدارة انواع الألعاب'),
                 onTap: () {
                   Navigator.of(context).pushNamed('setting');
                 },
               ),
               ListTile(
-                title: const Text('Item 2'),
+                title: const Text('إضافي'),
                 onTap: () {
                   // Handle drawer item 2 selection
                 },

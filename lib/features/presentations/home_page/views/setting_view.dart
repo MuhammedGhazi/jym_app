@@ -29,7 +29,7 @@ class _SettingViewState extends State<SettingView> {
                     child: TextField(
                   controller: _categoryController,
                   decoration: InputDecoration(
-                      hintText: "Enter new category",
+                      hintText: "أدخل رياضة جديدة",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(18))),
                 )),
@@ -47,7 +47,7 @@ class _SettingViewState extends State<SettingView> {
                   },
                   style:
                       const ButtonStyle(alignment: AlignmentDirectional.center),
-                  child: const Text("add category"),
+                  child: const Text("اضافة"),
                 )
               ],
             ),

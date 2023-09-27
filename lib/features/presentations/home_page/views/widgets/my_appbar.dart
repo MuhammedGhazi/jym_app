@@ -48,16 +48,17 @@ class _MyAppBarState extends State<MyAppBar> {
               Icons.person,
               color: Colors.grey,
             )),
-        IconButton(
-            onPressed: () {
-              //   Scaffold.of(context).openDrawer();
-              // scaffoldKey.currentState!.openDrawer();
-              //  BlocProvider.of<SubsCubit>(context).delDB();
-            },
-            icon: const Icon(
-              Icons.settings,
-              color: Colors.grey,
-            )),
+        // IconButton(
+        //     onPressed: () {
+        //       //   Scaffold.of(context).openDrawer();
+        //       // scaffoldKey.currentState!.openDrawer();
+        //       //  BlocProvider.of<SubsCubit>(context).delDB();
+        //     },
+        //     icon: const Icon(
+        //       Icons.settings,
+        //       color: Colors.grey,
+        //     )),
+
         GestureDetector(
           onTap: () => Navigator.of(context).pushNamed("statistics"),
           child: const CircleAvatar(

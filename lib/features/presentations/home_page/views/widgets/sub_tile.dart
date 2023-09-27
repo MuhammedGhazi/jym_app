@@ -49,7 +49,7 @@ class SubTile extends StatelessWidget {
                               color: Colors.grey[200], size: 18),
                           const SizedBox(width: 4),
                           Text(
-                            "record to ---${subs.upToRecord}",
+                            " مشترك لغاية  ${subs.upToRecord}",
                             style: GoogleFonts.lato(
                                 textStyle: const TextStyle(
                                     fontSize: 16,

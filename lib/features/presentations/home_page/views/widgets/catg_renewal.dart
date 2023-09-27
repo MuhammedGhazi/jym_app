@@ -24,7 +24,7 @@ class _CatgRenewalState extends State<CatgRenewal> {
           ),
           const SizedBox(height: 5),
           MyButton(
-            lable: "delete",
+            lable: "حذف",
             onTap: () {
               setState(() {
                 BlocProvider.of<CategoryCubit>(context).removeCatg(widget.catg);

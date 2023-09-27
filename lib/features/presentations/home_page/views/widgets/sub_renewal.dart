@@ -24,12 +24,12 @@ class _SubRenewalState extends State<SubRenewal> {
       child: Column(
         children: [
           Text(
-              "Name: ${widget.subM.fullName.toString()}            Sport: ${widget.subM.category.toString()}"),
+              "الاسم: ${widget.subM.fullName.toString()}            الرياضة: ${widget.subM.category.toString()}"),
           const SizedBox(height: 10),
           Text(
-              "         Age: ${DateTime.now().year - widget.subM.age!}            Tall: ${widget.subM.tall}            Weight: ${widget.subM.weight}"),
+              "         العمر: ${DateTime.now().year - widget.subM.age!}            الطول: ${widget.subM.tall}            الوزن: ${widget.subM.weight}"),
           InputField(
-            title: " renewal record to ",
+            title: " التجديد لغاية ",
             hint: recodTo ??
                 _addMonthToDate(widget.subM.upToRecord.toString(), 1),
             widget: IconButton(
@@ -48,7 +48,7 @@ class _SubRenewalState extends State<SubRenewal> {
           Row(
             children: [
               MyButton(
-                lable: "renewal",
+                lable: "تجديد",
                 onTap: () {
                   BlocProvider.of<SubsCubit>(context).renewalSubs(
                       widget.subM.id!,
@@ -61,7 +61,7 @@ class _SubRenewalState extends State<SubRenewal> {
               ),
               const SizedBox(width: 5),
               MyButton(
-                lable: "archive",
+                lable: "ارشفة",
                 onTap: () {
                   setState(() {
                     BlocProvider.of<SubsCubit>(context)
@@ -74,7 +74,7 @@ class _SubRenewalState extends State<SubRenewal> {
               ),
               const SizedBox(width: 5),
               MyButton(
-                lable: "delete",
+                lable: "حذف",
                 onTap: () {
                   setState(() {
                     BlocProvider.of<SubsCubit>(context)

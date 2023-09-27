@@ -29,7 +29,7 @@ class _SubRenewal2State extends State<SubRenewal2> {
           ),
           Text(widget.subM.category.toString()),
           InputField(
-            title: " renewal record to ",
+            title: " تجديد لغاية ",
             hint: recodTo ??
                 _addMonthToDate(widget.subM.upToRecord.toString(), 1),
             widget: IconButton(
@@ -46,7 +46,7 @@ class _SubRenewal2State extends State<SubRenewal2> {
           ),
           const SizedBox(height: 5),
           MyButton(
-            lable: "renewal",
+            lable: "تجديد",
             onTap: () {
               setState(() {
                 BlocProvider.of<SubsCubit>(context).renewalSubs(
@@ -61,7 +61,7 @@ class _SubRenewal2State extends State<SubRenewal2> {
           ),
           const SizedBox(height: 5),
           MyButton(
-            lable: "delete",
+            lable: "حذف",
             onTap: () {
               setState(() {
                 BlocProvider.of<SubsCubit>(context).deleteSub(widget.subM.id!);

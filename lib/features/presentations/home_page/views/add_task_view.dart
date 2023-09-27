@@ -69,7 +69,7 @@ class _AddTaskViewState extends State<AddTaskView> {
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text(
-                    "Al_DANA GYM",
+                    "نادي الدانا الرياضي",
                     style: Stylies.headingStyle(),
                   ),
                 ),
@@ -78,8 +78,8 @@ class _AddTaskViewState extends State<AddTaskView> {
                   children: [
                     Expanded(
                       child: InputField(
-                        hint: 'Enter your full name',
-                        title: 'Full Name',
+                        hint: 'ادخل الاسم الكامل',
+                        title: 'الاسم الكامل',
                         controller: _titleController,
                       ),
                     ),
@@ -107,8 +107,8 @@ class _AddTaskViewState extends State<AddTaskView> {
                   children: [
                     Expanded(
                       child: InputField2(
-                        hint: "year",
-                        title: 'age',
+                        hint: "سنة",
+                        title: 'العمر',
                         widget: NumberPicker(
                           itemWidth: 50,
                           selectedTextStyle: const TextStyle(fontSize: 18),
@@ -130,7 +130,7 @@ class _AddTaskViewState extends State<AddTaskView> {
                     Expanded(
                       child: InputField2(
                         hint: "Cm",
-                        title: 'Tall',
+                        title: 'الطول',
                         widget: NumberPicker(
                           itemWidth: 50,
                           selectedTextStyle: const TextStyle(fontSize: 18),
@@ -152,7 +152,7 @@ class _AddTaskViewState extends State<AddTaskView> {
                     Expanded(
                       child: InputField2(
                         hint: 'KG',
-                        title: 'weight',
+                        title: 'الوزن',
                         widget: NumberPicker(
                           itemWidth: 50,
                           selectedTextStyle: const TextStyle(fontSize: 18),
@@ -175,7 +175,7 @@ class _AddTaskViewState extends State<AddTaskView> {
                 ),
                 InputField(
                   hint: _selectedClass,
-                  title: 'category',
+                  title: 'الرياضة',
                   widget: DropdownButton(
                     icon: const Icon(Icons.keyboard_arrow_down),
                     items: BlocProvider.of<CategoryCubit>(context)
@@ -198,7 +198,7 @@ class _AddTaskViewState extends State<AddTaskView> {
                   children: [
                     Expanded(
                       child: InputField(
-                        title: "date record",
+                        title: "تاريخ التسجيل",
                         hint: DateFormat('dd/MM/y').format(_selectedDate),
                         widget: IconButton(
                             onPressed: () async {
@@ -217,7 +217,7 @@ class _AddTaskViewState extends State<AddTaskView> {
                     ),
                     Expanded(
                       child: InputField(
-                        title: "record up to",
+                        title: "سجل لتاريخ",
                         hint: DateFormat('dd/MM/y').format(_upToDate),
                         widget: IconButton(
                             onPressed: () async {
@@ -241,7 +241,7 @@ class _AddTaskViewState extends State<AddTaskView> {
                   children: [
                     _colorPallete(),
                     MyButton(
-                        lable: "Add subscriber",
+                        lable: "إضافة",
                         onTap: () {
                           _validateDate(cubitAddSubs);
                         })
@@ -262,7 +262,7 @@ class _AddTaskViewState extends State<AddTaskView> {
           category: _selectedClass,
           dateRecord: DateFormat('dd/MM/y').format(_selectedDate).toString(),
           note:
-              "First Record at :${DateFormat('dd/MM/y').format(_selectedDate).toString()} to ${DateFormat('dd/MM/y').format(_upToDate)} \n",
+              "سجل لأول مرة في  :${DateFormat('dd/MM/y').format(_selectedDate).toString()} لغاية ${DateFormat('dd/MM/y').format(_upToDate)} \n",
           age: DateTime.now().year - _age,
           tall: _tall,
           weight: _weight,
@@ -273,8 +273,8 @@ class _AddTaskViewState extends State<AddTaskView> {
       Navigator.pop(context);
       BlocProvider.of<SubsCubit>(context).fetchActiveSubs();
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("all feiled id required..")));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text("جميع الحقول مطلوبة ..")));
     }
   }
 
@@ -283,7 +283,7 @@ class _AddTaskViewState extends State<AddTaskView> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Colors",
+          "اللون",
           style: Stylies.titleStyle(),
         ),
         const SizedBox(
