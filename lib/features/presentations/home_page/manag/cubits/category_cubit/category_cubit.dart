@@ -12,10 +12,12 @@ class CategoryCubit extends Cubit<CatogaryService> {
   addCatg(String cat) {
     categories.add(cat);
     CatogaryService().updateCategories(categories);
+    emit(CatogaryService());
   }
 
   removeCatg(String value) {
     categories.remove(value);
     CatogaryService().updateCategories(categories);
+    emit(CatogaryService());
   }
 }

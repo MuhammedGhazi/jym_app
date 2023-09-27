@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:jym_app/core/constants/stylies.dart';
+import 'package:jym_app/features/presentations/home_page/manag/cubits/subs_cubit/subs_cubit.dart';
 
 import 'my_button.dart';
 
@@ -31,7 +33,21 @@ class AddTaskBar extends StatelessWidget {
           ),
           MyButton(
               lable: " New subscriber",
-              onTap: (() => Navigator.of(context).pushNamed('addTask')))
+              onTap: (() {
+                // BlocProvider.of<SubsCubit>(context).fetchActiveSubs();
+                debugPrint(
+                    "${BlocProvider.of<SubsCubit>(context).allActiveSubs == null ? 0 : BlocProvider.of<SubsCubit>(context).allActiveSubs!.length} ??");
+                if (BlocProvider.of<SubsCubit>(context).allActiveSubs == null ||
+                    BlocProvider.of<SubsCubit>(context).allActiveSubs!.length <
+                        6) {
+                  return Navigator.of(context).pushNamed('addTask');
+                } else {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) => const Text(" Hellow man!!"),
+                  );
+                }
+              }))
         ],
       ),
     );

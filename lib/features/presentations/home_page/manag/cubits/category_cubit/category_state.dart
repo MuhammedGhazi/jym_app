@@ -4,3 +4,5 @@ part of 'category_cubit.dart';
 abstract class CategoryState {}
 
 class CategoryInitial extends CategoryState {}
+
+class CategorySuccess extends CategoryState {}
