@@ -66,7 +66,7 @@ class SubsRepo {
     //   return MapEntry(k,k=="AvAge" ?DateTime.now().year-v :v);
     // });
     // }
-    print(infoC);
+
     return infoC;
   }
 
